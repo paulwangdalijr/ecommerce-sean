@@ -1,0 +1,97 @@
+<router-outlet></router-outlet>
+<div class="row">
+  <div class="form-group col-3">
+    <h4>Categories</h4>
+    <div class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" id="customCheck1" checked="">
+      <label class="custom-control-label" for="customCheck1">Phones</label>
+    </div>
+    <div class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" id="customCheck2" >
+      <label class="custom-control-label" for="customCheck2">Shirts</label>
+    </div>
+    <div class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" id="customCheck3" >
+      <label class="custom-control-label" for="customCheck3">Bags</label>
+    </div>
+  </div>
+
+  <div class="col-9">
+    <div class="row">
+      <button (click)="itemMargin='list-item-3'">3</button>
+      <button (click)="itemMargin='list-item-4'">4</button>
+    </div>
+    <div class="row">
+        <!-- <div [ngClass]="itemMargin" class="list-item d-inline-flex p-2">          
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+            </div>
+          </div>
+        </div>
+        <div [ngClass]="itemMargin" class="list-item d-inline-flex p-2">Flex item 2</div>
+        <div [ngClass]="itemMargin" class="list-item d-inline-flex p-2">Flex item 3</div>
+        <div [ngClass]="itemMargin" class="list-item d-inline-flex p-2">Flex item 4</div> -->
+
+        <div [ngClass]="itemMargin" class="col-lg-3">          
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <div class="card-footer">
+              <button (click)="productService.addToCart()">Add to cart</button>
+              <a href="#" class="card-link">Another link</a>
+            </div>
+          </div>
+        </div>
+        <div [ngClass]="itemMargin" class="col-lg-3">
+        	<div class="card">
+	            <div class="card-body">
+	              <h4 class="card-title">Card title</h4>
+	              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+	              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	            </div>
+	            <div class="card-footer">
+	              <a href="#" class="card-link">Card link</a>
+	              <a href="#" class="card-link">Another link</a>
+	            </div>
+            </div>
+        </div>
+        <div [ngClass]="itemMargin" class="col-lg-3">
+        	<div class="card">
+	            <div class="card-body">
+	              <h4 class="card-title">Card title</h4>
+	              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+	              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	            </div>
+	            <div class="card-footer">
+	              <a href="#" class="card-link">Card link</a>
+	              <a href="#" class="card-link">Another link</a>
+	            </div>
+            </div>
+        </div>
+        <div [ngClass]="itemMargin" class="col-lg-3">
+        	<div class="card">
+	            <div class="card-body">
+	              <h4 class="card-title">Card title</h4>
+	              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+	              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	            </div>
+	            <div class="card-footer">
+	              <a href="#" class="card-link">Card link</a>
+	              <a href="#" class="card-link">Another link</a>
+	            </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+</div>
