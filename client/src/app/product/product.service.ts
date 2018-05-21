@@ -8,9 +8,7 @@ export class ProductService {
   constructor() { }
 
   addToCart(){
-  	this.count += 1;
-  }
-  getList(){
-  	console.log(this.count);
+    this.count += 1;
+    // return this.count;
   }
 }

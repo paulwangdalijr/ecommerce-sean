@@ -17,7 +17,7 @@
   </div>
 
   <div class="col-9">
-    <div class="row">
+    <div class="row submenu">
       <button (click)="itemMargin='list-item-3'">3</button>
       <button (click)="itemMargin='list-item-4'">4</button>
     </div>
@@ -39,21 +39,24 @@
         <div [ngClass]="itemMargin" class="list-item d-inline-flex p-2">Flex item 3</div>
         <div [ngClass]="itemMargin" class="list-item d-inline-flex p-2">Flex item 4</div> -->
 
-        <div [ngClass]="itemMargin" class="col-lg-3">          
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
+        <div [ngClass]="itemMargin" class="col-lg-3">           
+          <div [ngClass]="cardWidth" class="card">
+            <a href='#'class="card-link" data-toggle="modal" data-target="#modalProduct">
+              <div class="card-body">     
+                  <img alt='test' src="http://www.paperairplanebehavioral.com/wp-content/uploads/2015/07/Airplane.png"/>           
+                <h4 class="card-title">Paper plane</h4>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="card-text"></p>
+              </div>
+            </a>   
             <div class="card-footer">
-              <button (click)="productService.addToCart()">Add to cart</button>
+              <button class='add-to-cart' (click)="productService.addToCart()">Add to cart</button>
               <a href="#" class="card-link">Another link</a>
             </div>
-          </div>
+          </div>      
         </div>
-        <div [ngClass]="itemMargin" class="col-lg-3">
-        	<div class="card">
+        <div [ngClass]="itemMargin" class="col-lg-3" data-toggle="modal" data-target="#modalProduct">
+        	<div [ngClass]="cardWidth" class="card">
 	            <div class="card-body">
 	              <h4 class="card-title">Card title</h4>
 	              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
@@ -65,8 +68,8 @@
 	            </div>
             </div>
         </div>
-        <div [ngClass]="itemMargin" class="col-lg-3">
-        	<div class="card">
+        <div [ngClass]="itemMargin" class="col-lg-3"  data-toggle="modal" data-target="#modalProduct">
+        	<div [ngClass]="cardWidth" class="card">
 	            <div class="card-body">
 	              <h4 class="card-title">Card title</h4>
 	              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
@@ -78,8 +81,8 @@
 	            </div>
             </div>
         </div>
-        <div [ngClass]="itemMargin" class="col-lg-3">
-        	<div class="card">
+        <div [ngClass]="itemMargin" class="col-lg-3"  data-toggle="modal" data-target="#modalProduct">
+        	<div [ngClass]="cardWidth" class="card">
 	            <div class="card-body">
 	              <h4 class="card-title">Card title</h4>
 	              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
@@ -93,5 +96,27 @@
         </div>
     </div>
   </div>
-
+</div>
+<button id="test" class="btn btn-primary">test</button>
+<div class="btn btn-primary" data-toggle="modal" data-target="#modalProduct">
+  Launch demo modal
+</div>
+<div class="modal" id="modalProduct">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
