@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../product.service';
+import { ProductService } from '../../services/product.service';
+import { CartService } from '../../services/cart.service';
+import { Product } from '../../models/product';
 import * as $ from 'jquery';
 
 @Component({
@@ -11,8 +13,15 @@ export class ProductListComponent implements OnInit {
   itemMargin;
   cardWidth;
   constructor(
-  	private productService: ProductService
+  	private cartService: CartService
   ) { }
+
+  addToCart(){
+    let product = new Product();
+    product.id = 111;
+    product.quantity = 1;
+    this.cartService.addToCart(product, 1);
+  }
 
   ngOnInit() {
     this.itemMargin='list-item-4';

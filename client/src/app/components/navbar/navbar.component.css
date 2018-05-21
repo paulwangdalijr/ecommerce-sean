@@ -1,0 +1,11 @@
+.account-button{
+	font-size: 30px;
+	margin-right: 15px;
+}
+.account-button i{
+	font-size: 30px;
+	margin-right: 15px;
+}
+.account-button:hover{
+	cursor: pointer;
+}
