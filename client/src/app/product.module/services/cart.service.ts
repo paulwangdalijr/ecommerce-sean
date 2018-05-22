@@ -19,6 +19,6 @@ export class CartService {
   	cartProduct.quantity = qty;
   	this.cart.push(product);
 
-  	console.log(product);
+  	// console.log(product);  
   }
 }

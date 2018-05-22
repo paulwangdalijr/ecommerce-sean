@@ -15,23 +15,19 @@
       <label class="custom-control-label" for="customCheck3">Bags</label>
     </div>
   </div>
-  <button (click)="getAllProducts()">Print</button>
-  <p *ngFor="let p of products">{{p.name}}</p>
-  <p>{{prod}}</p><p>{{ products }}</p>
-  <p *ngIf="false">TESTING</p>
   <div class="col-9">
     <div class="row submenu">
       <button (click)="itemMargin='col-3'">3</button>
       <button (click)="itemMargin='col-4'">4</button>
     </div>
     <div class="row">
-        <div [ngClass]="itemMargin" class="col-4">           
+        <div [ngClass]="itemMargin" class="col-4" *ngFor="let product of products">           
           <div [ngClass]="cardWidth" class="card">
-            <a href='#'class="card-link" data-toggle="modal" data-target="#modalProduct">
+            <a href='#'class="card-link" data-toggle="modal" data-target="#modalProduct" (click)="onProductSelect(product)">
               <div class="card-body">     
                   <img alt='test' src="http://www.paperairplanebehavioral.com/wp-content/uploads/2015/07/Airplane.png"/>           
-                <h4 class="card-title">Paper plane</h4>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <h4 class="card-title">{{product.name}}</h4>
+                <h6 class="card-subtitle mb-2 text-muted">{{product.description}}</h6>
                 <p class="card-text"></p>
               </div>
             </a>   
@@ -51,7 +47,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Product name</h5>
+        <h5 class="modal-title">{{SelectedProduct.name}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -63,11 +59,11 @@
               <img alt='test' src="http://www.paperairplanebehavioral.com/wp-content/uploads/2015/07/Airplane.png"/>
             </div>
             <div class="col-sm">
-              <p>Product Description </p>
+              <p>{{SelectedProduct.description}}</p>
               <ul>
-                <li><strong>Price:</strong> $5</li>
-                <li><strong>Color:</strong> Red</li>
-                <li><strong>Quantity left:</strong> 10</li>
+                <!-- <li *ngFor="let prop of Object.getOwnPropertyNames(product.property)"><strong>prop</strong></li> -->
+                <!-- <li>{{Object.getOwnPropertyNames(SelectedProduct)}}</li> -->
+                <li *ngFor="let prop of SelectedProperty"><strong>{{prop}}: </strong>{{SelectedProduct.property[prop]}}</li>
               </ul>
             </div>
           </div>

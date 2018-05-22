@@ -12,8 +12,10 @@ import * as $ from 'jquery';
 export class ProductListComponent implements OnInit {
   itemMargin;
   cardWidth;
-  Products = [];
-  prod = "asdsadasd";
+  products;
+  SelectedProduct = new Product();
+  SelectedProperty = [];
+
   constructor(
     private cartService: CartService,
     private productService: ProductService
@@ -27,22 +29,27 @@ export class ProductListComponent implements OnInit {
   }
 
   getAllProducts(){
+    this.products = [];
     this.productService.getAllProducts().subscribe((data:any)=>{
-      // data.rows.forEach(element => {
-      //   let product = new Product();
-      //   product.id = element.ID;
-      //   product.description = element.description;
-      //   product.name = element.name;
-      //   product.price = element.price;
-      //   product.quantity = element.quantity;
-      //   product.property = JSON.parse(element.property);
-      //   this.Products.push(product);
-      // });
-      this.Products=data.rows;
+      data.rows.forEach(element => {
+        let ProductItem = new Product();
+        ProductItem.id = element.ID;
+        ProductItem.description = element.description;
+        ProductItem.name = element.name;
+        ProductItem.price = element.price;
+        ProductItem.quantity = element.quantity;
+        ProductItem.property = JSON.parse(element.property);
+        this.products.push(ProductItem);
+      });
+      // this.Products=data.rows;
     });
   }
-  printProducts(){
-    console.log(this.Products[0].name);
+
+  onProductSelect(product: Product){
+    this.SelectedProduct = product;
+    // console.log(product);
+    // console.log(Object.getOwnPropertyNames(product.property));
+    this.SelectedProperty = Object.getOwnPropertyNames(product.property);
   }
 
   ngOnInit() {
