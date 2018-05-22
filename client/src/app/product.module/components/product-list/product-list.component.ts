@@ -12,8 +12,11 @@ import * as $ from 'jquery';
 export class ProductListComponent implements OnInit {
   itemMargin;
   cardWidth;
+  Products = [];
+  prod = "asdsadasd";
   constructor(
-  	private cartService: CartService
+    private cartService: CartService,
+    private productService: ProductService
   ) { }
 
   addToCart(){
@@ -23,8 +26,28 @@ export class ProductListComponent implements OnInit {
     this.cartService.addToCart(product, 1);
   }
 
+  getAllProducts(){
+    this.productService.getAllProducts().subscribe((data:any)=>{
+      // data.rows.forEach(element => {
+      //   let product = new Product();
+      //   product.id = element.ID;
+      //   product.description = element.description;
+      //   product.name = element.name;
+      //   product.price = element.price;
+      //   product.quantity = element.quantity;
+      //   product.property = JSON.parse(element.property);
+      //   this.Products.push(product);
+      // });
+      this.Products=data.rows;
+    });
+  }
+  printProducts(){
+    console.log(this.Products[0].name);
+  }
+
   ngOnInit() {
-    this.itemMargin='list-item-4';
+    this.getAllProducts();
+    this.itemMargin='col-4';
     // this.cardWidth = 'w-30';
     $(document).ready(function(){
       $('.add-to-cart').on('click', function () {

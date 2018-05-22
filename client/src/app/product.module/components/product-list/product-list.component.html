@@ -15,14 +15,17 @@
       <label class="custom-control-label" for="customCheck3">Bags</label>
     </div>
   </div>
-
+  <button (click)="getAllProducts()">Print</button>
+  <p *ngFor="let p of products">{{p.name}}</p>
+  <p>{{prod}}</p><p>{{ products }}</p>
+  <p *ngIf="false">TESTING</p>
   <div class="col-9">
     <div class="row submenu">
-      <button (click)="itemMargin='list-item-3'">3</button>
-      <button (click)="itemMargin='list-item-4'">4</button>
+      <button (click)="itemMargin='col-3'">3</button>
+      <button (click)="itemMargin='col-4'">4</button>
     </div>
     <div class="row">
-        <div [ngClass]="itemMargin" class="col">           
+        <div [ngClass]="itemMargin" class="col-4">           
           <div [ngClass]="cardWidth" class="card">
             <a href='#'class="card-link" data-toggle="modal" data-target="#modalProduct">
               <div class="card-body">     
@@ -40,45 +43,6 @@
 
             </div>
           </div>      
-        </div>
-        <div [ngClass]="itemMargin" class="col-lg-4" data-toggle="modal" data-target="#modalProduct">
-        	<div [ngClass]="cardWidth" class="card">
-	            <div class="card-body">
-	              <h4 class="card-title">Card title</h4>
-	              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-	              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-	            </div>
-	            <div class="card-footer">
-	              <a href="#" class="card-link">Card link</a>
-	              <a href="#" class="card-link">Another link</a>
-	            </div>
-            </div>
-        </div>
-        <div [ngClass]="itemMargin" class="col-lg-4"  data-toggle="modal" data-target="#modalProduct">
-        	<div [ngClass]="cardWidth" class="card">
-	            <div class="card-body">
-	              <h4 class="card-title">Card title</h4>
-	              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-	              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-	            </div>
-	            <div class="card-footer">
-	              <a href="#" class="card-link">Card link</a>
-	              <a href="#" class="card-link">Another link</a>
-	            </div>
-            </div>
-        </div>
-        <div [ngClass]="itemMargin" class="col-lg-4"  data-toggle="modal" data-target="#modalProduct">
-        	<div [ngClass]="cardWidth" class="card">
-	            <div class="card-body">
-	              <h4 class="card-title">Card title</h4>
-	              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-	              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-	            </div>
-	            <div class="card-footer">
-	              <a href="#" class="card-link">Card link</a>
-	              <a href="#" class="card-link">Another link</a>
-	            </div>
-            </div>
         </div>
     </div>
   </div>

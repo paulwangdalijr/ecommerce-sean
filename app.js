@@ -5,10 +5,15 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+var productRouter = require('./routes/product');
+
+const database = require('./config/database');
 // var usersRouter = require('./routes/users');
 
 var app = express();
+const cors = require('cors');
 
+// database.serialize();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -19,6 +24,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'))); 
 
+// dev purposes
+app.use(cors({
+  origin: 'http://localhost:4200'
+}));
+
+
+app.use('/api/product', productRouter);
 app.use('', indexRouter);
 // app.use('/users', usersRouter);
 
@@ -38,4 +50,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+app.on('SIGINT', () => {
+  database.close();
+  app.close();
+});
 module.exports = app;
