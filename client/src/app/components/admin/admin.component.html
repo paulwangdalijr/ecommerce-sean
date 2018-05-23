@@ -1,0 +1,73 @@
+<div class="container">
+	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalProduct">Add Product</button>
+	<div class="row">
+		<div class="col-lg-12">
+			<table>
+			  <thead>
+			    <tr>
+			      <th scope="col">Name</th>
+			      <th scope="col">Description</th>
+			      <th scope="col">Categories</th>
+			      <th scope="col">Quantity</th>
+			      <th scope="col">Price</th>
+			      <th scope="col" class="text-lg-right">Actions</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  	<tr *ngFor="let product of products; 
+			             let isOdd=odd;
+			             let isEven=even" 
+				      [class.table-dark]="isOdd" 
+				      [class.table-light]="isEven">
+				      <td>{{product.name}}</td>
+				      <td>{{product.description}}</td>
+				      <td></td>
+				      <td>{{product.quantity}}</td>
+				      <td>{{product.price}}</td>
+				      <td>
+				      	  <button class="btn btn-primary float-right" data-toggle="modal" data-target="#modalProduct">Edit</button>
+				      	  <button class="btn btn-info float-right" data-toggle="modal" data-target="#modalProduct">Details</button>
+				      	  <button class="btn btn-danger float-right">Delete</button>
+				      	</td>
+				</tr>
+			  </tbody>
+			</table> 
+		</div>
+	</div>
+</div>
+
+<div class="modal" id="modalProduct">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form>	
+	      <div class="modal-header">      	
+	        <input type="text" class="modal-title" value="test title"/>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <div class="container">
+	          <div class="row">
+	            <div class="col-sm">
+	              <img alt='test' src="http://www.paperairplanebehavioral.com/wp-content/uploads/2015/07/Airplane.png"/>
+	            </div>
+	            <div class="col-sm">
+	              <textarea> descript ion </textarea>
+	              <ul>
+	                <!-- <li *ngFor="let prop of Object.getOwnPropertyNames(product.property)"><strong>prop</strong></li> -->
+	                <!-- <li>{{Object.getOwnPropertyNames(SelectedProduct)}}</li> -->
+	                <li *ngFor="let prop of SelectedProperty"><strong>{{prop}}: </strong>{{SelectedProduct.property[prop]}}</li>
+	              </ul>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	     </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primar" data-dismiss="modal">Ok</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

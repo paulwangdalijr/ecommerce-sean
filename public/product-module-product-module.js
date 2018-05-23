@@ -10465,7 +10465,7 @@ module.exports = ".list-item-3 {\r\n\tmargin-right: 20px;\r\n}\r\n.list-item-4 {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet>\r\n<div class=\"row\">\r\n  <div class=\"form-group col-3\">\r\n    <h4>Categories</h4>\r\n    <div class=\"custom-control custom-checkbox\">\r\n      <input type=\"checkbox\" class=\"custom-control-input\" id=\"customCheck1\" checked=\"\">\r\n      <label class=\"custom-control-label\" for=\"customCheck1\">Phones</label>\r\n    </div>\r\n    <div class=\"custom-control custom-checkbox\">\r\n      <input type=\"checkbox\" class=\"custom-control-input\" id=\"customCheck2\" >\r\n      <label class=\"custom-control-label\" for=\"customCheck2\">Shirts</label>\r\n    </div>\r\n    <div class=\"custom-control custom-checkbox\">\r\n      <input type=\"checkbox\" class=\"custom-control-input\" id=\"customCheck3\" >\r\n      <label class=\"custom-control-label\" for=\"customCheck3\">Bags</label>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col-9\">\r\n    <div class=\"row submenu\">\r\n      <button (click)=\"itemMargin='list-item-3'\">3</button>\r\n      <button (click)=\"itemMargin='list-item-4'\">4</button>\r\n    </div>\r\n    <div class=\"row\">\r\n        <div [ngClass]=\"itemMargin\" class=\"col\">           \r\n          <div [ngClass]=\"cardWidth\" class=\"card\">\r\n            <a href='#'class=\"card-link\" data-toggle=\"modal\" data-target=\"#modalProduct\">\r\n              <div class=\"card-body\">     \r\n                  <img alt='test' src=\"http://www.paperairplanebehavioral.com/wp-content/uploads/2015/07/Airplane.png\"/>           \r\n                <h4 class=\"card-title\">Paper plane</h4>\r\n                <h6 class=\"card-subtitle mb-2 text-muted\">Card subtitle</h6>\r\n                <p class=\"card-text\"></p>\r\n              </div>\r\n            </a>   \r\n            <div class=\"card-footer\">\r\n              <!-- <button class='add-to-cart' (click)=\"productService.addToCart()\">Add to cart</button>\r\n              <a href=\"#\" class=\"card-link\">Another link</a> -->\r\n              <button type=\"button\" class=\"btn btn-primary btn-sm add-to-cart\" (click)=\"addToCart()\">Add to cart</button>\r\n              <button type=\"button\" class=\"btn btn-primary dropdown-toggle btn-sm\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"></button>              \r\n\r\n            </div>\r\n          </div>      \r\n        </div>\r\n        <div [ngClass]=\"itemMargin\" class=\"col-lg-4\" data-toggle=\"modal\" data-target=\"#modalProduct\">\r\n        \t<div [ngClass]=\"cardWidth\" class=\"card\">\r\n\t            <div class=\"card-body\">\r\n\t              <h4 class=\"card-title\">Card title</h4>\r\n\t              <h6 class=\"card-subtitle mb-2 text-muted\">Card subtitle</h6>\r\n\t              <p class=\"card-text\">Some quick example text to build on the card title and make up the bulk of the card's content.</p>\r\n\t            </div>\r\n\t            <div class=\"card-footer\">\r\n\t              <a href=\"#\" class=\"card-link\">Card link</a>\r\n\t              <a href=\"#\" class=\"card-link\">Another link</a>\r\n\t            </div>\r\n            </div>\r\n        </div>\r\n        <div [ngClass]=\"itemMargin\" class=\"col-lg-4\"  data-toggle=\"modal\" data-target=\"#modalProduct\">\r\n        \t<div [ngClass]=\"cardWidth\" class=\"card\">\r\n\t            <div class=\"card-body\">\r\n\t              <h4 class=\"card-title\">Card title</h4>\r\n\t              <h6 class=\"card-subtitle mb-2 text-muted\">Card subtitle</h6>\r\n\t              <p class=\"card-text\">Some quick example text to build on the card title and make up the bulk of the card's content.</p>\r\n\t            </div>\r\n\t            <div class=\"card-footer\">\r\n\t              <a href=\"#\" class=\"card-link\">Card link</a>\r\n\t              <a href=\"#\" class=\"card-link\">Another link</a>\r\n\t            </div>\r\n            </div>\r\n        </div>\r\n        <div [ngClass]=\"itemMargin\" class=\"col-lg-4\"  data-toggle=\"modal\" data-target=\"#modalProduct\">\r\n        \t<div [ngClass]=\"cardWidth\" class=\"card\">\r\n\t            <div class=\"card-body\">\r\n\t              <h4 class=\"card-title\">Card title</h4>\r\n\t              <h6 class=\"card-subtitle mb-2 text-muted\">Card subtitle</h6>\r\n\t              <p class=\"card-text\">Some quick example text to build on the card title and make up the bulk of the card's content.</p>\r\n\t            </div>\r\n\t            <div class=\"card-footer\">\r\n\t              <a href=\"#\" class=\"card-link\">Card link</a>\r\n\t              <a href=\"#\" class=\"card-link\">Another link</a>\r\n\t            </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<div class=\"modal\" id=\"modalProduct\">\r\n  <div class=\"modal-dialog\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\">Product name</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <div class=\"container\">\r\n          <div class=\"row\">\r\n            <div class=\"col-sm\">\r\n              <img alt='test' src=\"http://www.paperairplanebehavioral.com/wp-content/uploads/2015/07/Airplane.png\"/>\r\n            </div>\r\n            <div class=\"col-sm\">\r\n              <p>Product Description </p>\r\n              <ul>\r\n                <li><strong>Price:</strong> $5</li>\r\n                <li><strong>Color:</strong> Red</li>\r\n                <li><strong>Quantity left:</strong> 10</li>\r\n              </ul>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-primar add-to-cart\" data-dismiss=\"modal\">Add to cart</button>\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<router-outlet></router-outlet>\r\n<div class=\"row\">\r\n  <div class=\"form-group col-3\">\r\n    <h4>Categories</h4>\r\n    <div class=\"custom-control custom-checkbox\">\r\n      <input type=\"checkbox\" class=\"custom-control-input\" id=\"customCheck1\" checked=\"\">\r\n      <label class=\"custom-control-label\" for=\"customCheck1\">Phones</label>\r\n    </div>\r\n    <div class=\"custom-control custom-checkbox\">\r\n      <input type=\"checkbox\" class=\"custom-control-input\" id=\"customCheck2\" >\r\n      <label class=\"custom-control-label\" for=\"customCheck2\">Shirts</label>\r\n    </div>\r\n    <div class=\"custom-control custom-checkbox\">\r\n      <input type=\"checkbox\" class=\"custom-control-input\" id=\"customCheck3\" >\r\n      <label class=\"custom-control-label\" for=\"customCheck3\">Bags</label>\r\n    </div>\r\n  </div>\r\n  <div class=\"col-9\">\r\n    <div class=\"row submenu\">\r\n      <button (click)=\"itemMargin='col-3'\">3</button>\r\n      <button (click)=\"itemMargin='col-4'\">4</button>\r\n    </div>\r\n    <div class=\"row\">\r\n        <div [ngClass]=\"itemMargin\" class=\"col-4\" *ngFor=\"let product of products\">           \r\n          <div [ngClass]=\"cardWidth\" class=\"card\">\r\n            <a href='#'class=\"card-link\" data-toggle=\"modal\" data-target=\"#modalProduct\" (click)=\"onProductSelect(product)\">\r\n              <div class=\"card-body\">     \r\n                  <img alt='test' src=\"http://www.paperairplanebehavioral.com/wp-content/uploads/2015/07/Airplane.png\"/>           \r\n                <h4 class=\"card-title\">{{product.name}}</h4>\r\n                <h6 class=\"card-subtitle mb-2 text-muted\">{{product.description}}</h6>\r\n                <p class=\"card-text\"></p>\r\n              </div>\r\n            </a>   \r\n            <div class=\"card-footer\">\r\n              <!-- <button class='add-to-cart' (click)=\"productService.addToCart()\">Add to cart</button>\r\n              <a href=\"#\" class=\"card-link\">Another link</a> -->\r\n              <button type=\"button\" class=\"btn btn-primary btn-sm add-to-cart\" (click)=\"addToCart()\">Add to cart</button>\r\n              <button type=\"button\" class=\"btn btn-primary dropdown-toggle btn-sm\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"></button>              \r\n\r\n            </div>\r\n          </div>      \r\n        </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<div class=\"modal\" id=\"modalProduct\">\r\n  <div class=\"modal-dialog\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\">{{SelectedProduct.name}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <div class=\"container\">\r\n          <div class=\"row\">\r\n            <div class=\"col-sm\">\r\n              <img alt='test' src=\"http://www.paperairplanebehavioral.com/wp-content/uploads/2015/07/Airplane.png\"/>\r\n            </div>\r\n            <div class=\"col-sm\">\r\n              <p>{{SelectedProduct.description}}</p>\r\n              <ul>\r\n                <!-- <li *ngFor=\"let prop of Object.getOwnPropertyNames(product.property)\"><strong>prop</strong></li> -->\r\n                <!-- <li>{{Object.getOwnPropertyNames(SelectedProduct)}}</li> -->\r\n                <li *ngFor=\"let prop of SelectedProperty\"><strong>{{prop}}: </strong>{{SelectedProduct.property[prop]}}</li>\r\n              </ul>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-primar add-to-cart\" data-dismiss=\"modal\">Add to cart</button>\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -10480,10 +10480,11 @@ module.exports = "<router-outlet></router-outlet>\r\n<div class=\"row\">\r\n  <d
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductListComponent", function() { return ProductListComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _services_cart_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/cart.service */ "./src/app/product.module/services/cart.service.ts");
-/* harmony import */ var _models_product__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../models/product */ "./src/app/product.module/models/product.ts");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _services_product_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/product.service */ "./src/app/product.module/services/product.service.ts");
+/* harmony import */ var _services_cart_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/cart.service */ "./src/app/product.module/services/cart.service.ts");
+/* harmony import */ var _models_product__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../models/product */ "./src/app/product.module/models/product.ts");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_4__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10497,23 +10498,51 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var ProductListComponent = /** @class */ (function () {
-    function ProductListComponent(cartService) {
+    function ProductListComponent(cartService, productService) {
         this.cartService = cartService;
+        this.productService = productService;
+        this.SelectedProduct = new _models_product__WEBPACK_IMPORTED_MODULE_3__["Product"]();
+        this.SelectedProperty = [];
     }
     ProductListComponent.prototype.addToCart = function () {
-        var product = new _models_product__WEBPACK_IMPORTED_MODULE_2__["Product"]();
+        var product = new _models_product__WEBPACK_IMPORTED_MODULE_3__["Product"]();
         product.id = 111;
         product.quantity = 1;
         this.cartService.addToCart(product, 1);
     };
+    ProductListComponent.prototype.getAllProducts = function () {
+        var _this = this;
+        this.products = [];
+        this.productService.getAllProducts().subscribe(function (data) {
+            data.rows.forEach(function (element) {
+                var ProductItem = new _models_product__WEBPACK_IMPORTED_MODULE_3__["Product"]();
+                ProductItem.id = element.ID;
+                ProductItem.description = element.description;
+                ProductItem.name = element.name;
+                ProductItem.price = element.price;
+                ProductItem.quantity = element.quantity;
+                ProductItem.property = JSON.parse(element.property);
+                _this.products.push(ProductItem);
+            });
+            // this.Products=data.rows;
+        });
+    };
+    ProductListComponent.prototype.onProductSelect = function (product) {
+        this.SelectedProduct = product;
+        // console.log(product);
+        // console.log(Object.getOwnPropertyNames(product.property));
+        this.SelectedProperty = Object.getOwnPropertyNames(product.property);
+    };
     ProductListComponent.prototype.ngOnInit = function () {
-        this.itemMargin = 'list-item-4';
+        this.getAllProducts();
+        this.itemMargin = 'col-4';
         // this.cardWidth = 'w-30';
-        jquery__WEBPACK_IMPORTED_MODULE_3__(document).ready(function () {
-            jquery__WEBPACK_IMPORTED_MODULE_3__('.add-to-cart').on('click', function () {
-                var cart = jquery__WEBPACK_IMPORTED_MODULE_3__('.fa-shopping-cart');
-                var imgtodrag = jquery__WEBPACK_IMPORTED_MODULE_3__(this).parent().parent().find("img").eq(0);
+        jquery__WEBPACK_IMPORTED_MODULE_4__(document).ready(function () {
+            jquery__WEBPACK_IMPORTED_MODULE_4__('.add-to-cart').on('click', function () {
+                var cart = jquery__WEBPACK_IMPORTED_MODULE_4__('.fa-shopping-cart');
+                var imgtodrag = jquery__WEBPACK_IMPORTED_MODULE_4__(this).parent().parent().find("img").eq(0);
                 // console.log(imgtodrag);
                 if (imgtodrag) {
                     var imgclone = imgtodrag.clone()
@@ -10528,7 +10557,7 @@ var ProductListComponent = /** @class */ (function () {
                         'width': '150px',
                         'z-index': '100'
                     })
-                        .appendTo(jquery__WEBPACK_IMPORTED_MODULE_3__('body'))
+                        .appendTo(jquery__WEBPACK_IMPORTED_MODULE_4__('body'))
                         .animate({
                         'top': cart.offset().top + 10,
                         'left': cart.offset().left + 10,
@@ -10544,7 +10573,7 @@ var ProductListComponent = /** @class */ (function () {
                         'width': 0,
                         'height': 0
                     }, function () {
-                        jquery__WEBPACK_IMPORTED_MODULE_3__(this).detach();
+                        jquery__WEBPACK_IMPORTED_MODULE_4__(this).detach();
                     });
                 }
             });
@@ -10556,29 +10585,10 @@ var ProductListComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./product-list.component.html */ "./src/app/product.module/components/product-list/product-list.component.html"),
             styles: [__webpack_require__(/*! ./product-list.component.css */ "./src/app/product.module/components/product-list/product-list.component.css")]
         }),
-        __metadata("design:paramtypes", [_services_cart_service__WEBPACK_IMPORTED_MODULE_1__["CartService"]])
+        __metadata("design:paramtypes", [_services_cart_service__WEBPACK_IMPORTED_MODULE_2__["CartService"],
+            _services_product_service__WEBPACK_IMPORTED_MODULE_1__["ProductService"]])
     ], ProductListComponent);
     return ProductListComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/product.module/models/product.ts":
-/*!**************************************************!*\
-  !*** ./src/app/product.module/models/product.ts ***!
-  \**************************************************/
-/*! exports provided: Product */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Product", function() { return Product; });
-var Product = /** @class */ (function () {
-    function Product() {
-    }
-    return Product;
 }());
 
 
@@ -10668,7 +10678,6 @@ var ProductComponent = /** @class */ (function () {
     function ProductComponent() {
     }
     ProductComponent.prototype.ngOnInit = function () {
-        console.log("product component");
     };
     ProductComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -10765,7 +10774,7 @@ var CartService = /** @class */ (function () {
         cartProduct.id = product.id;
         cartProduct.quantity = qty;
         this.cart.push(product);
-        console.log(product);
+        // console.log(product);  
     };
     CartService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -10774,43 +10783,6 @@ var CartService = /** @class */ (function () {
         __metadata("design:paramtypes", [])
     ], CartService);
     return CartService;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/product.module/services/product.service.ts":
-/*!************************************************************!*\
-  !*** ./src/app/product.module/services/product.service.ts ***!
-  \************************************************************/
-/*! exports provided: ProductService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductService", function() { return ProductService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var ProductService = /** @class */ (function () {
-    function ProductService() {
-    }
-    ProductService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
-            providedIn: 'root'
-        }),
-        __metadata("design:paramtypes", [])
-    ], ProductService);
-    return ProductService;
 }());
 
 

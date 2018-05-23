@@ -18,7 +18,7 @@
 
     <!-- email Field -->
     <div class="form-group">
-      <label for="email">email</label>
+      <label for="email">Email</label>
       <div [ngClass]="{'has-error': form.controls.email.errors && form.controls.email.dirty, 'has-success': form.controls.email.valid && form.controls.email.dirty }">
         <input class="form-control" type="text" name="email" formControlName="email" />
         <!-- Validation -->
@@ -41,7 +41,7 @@
     </div>
     <!-- Submit Button -->
     <input [disabled]="!form.valid || processing" class="btn btn-primary" type="submit" value="Login" />
-    <a href="/auth/facebook" target="_blank" ><button type="button" class="btn btn-success">Facebook</button></a>
+    <a href="/auth/facebook" ><button type="button" class="btn btn-info">Facebook</button></a>
   </form>
   </div>
 </div>

@@ -1,9 +1,68 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const jwt = require('jsonwebtoken');
+const config = require('../config/config');
+const database = require('../config/database');
+
+const router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.post('/login', function(req, res, next) {
+  // res.send('respond with a resource');
+  if(!req.body.username){
+    res.json({success: false, message: 'Username not provided!'});
+  }else if(!req.body.password){
+    res.json({success: false, message: 'Password not provided!'});
+  }else{
+    database.get("SELECT * FROM user WHERE email = ? AND password = ? AND social = 0", [req.body.username, req.body.password], (err,row)=>{
+        if(err){
+            res.json({ success: false, message: "Username or password invalid" });
+        }else{
+            const token = jwt.sign({ userId: row.ID }, config.secret, { expiresIn: '24h'});
+            res.json({success: true, message: 'Login successful', token: token, user: {username: row.email, type: row.type} });
+        }
+    });
+  }
 });
+
+router.use((req, res, next) => {
+    const token = req.headers['x-auth-token'];
+    if(!token){
+        res.json({success: false, message: 'No token provided!'});
+    }else{
+        jwt.verify(token, config.secret, (err, decoded) => {
+            if(err){
+                res.json({success: false, message: 'Token invalid! ' + err});
+            }else{
+                req.decoded = decoded;
+                next();                                       
+            }
+        });
+    }
+});
+
+router.get('/profile', (req, res) => {
+	database.get("SELECT email FROM user WHERE ID = ?", [req.decoded.userId], (err,row)=>{
+		if(err){
+			res.json({ success: false, message: "Invalid user: " + err });
+		}else{
+			res.json({ success: true, user: row.email });
+		}
+	});
+});
+
+router.get('/adminprofile', (req, res) => {
+    database.get("SELECT type FROM user WHERE ID = ?", [req.decoded.userId], (err,row)=>{
+        if(err){
+            res.json({ success: false, message: "Invalid user: " + err });
+        }else{
+            if(row.type === 'admin'){
+                res.json({ success: true, user: row.email });
+            }else{
+                res.json({ success: false, message: "User not authorized" });
+            }
+        }
+    });
+});
+
 
 module.exports = router;

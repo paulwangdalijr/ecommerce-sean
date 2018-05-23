@@ -6,12 +6,16 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var productRouter = require('./routes/product');
+var authRouter = require('./routes/auth');
 
 const database = require('./config/database');
 // var usersRouter = require('./routes/users');
 
 var app = express();
 const cors = require('cors');
+const passport = require('passport');
+const social = require('./passport/passport')(app, passport);
+const session = require('express-session');
 
 // database.serialize();
 // view engine setup
@@ -22,6 +26,10 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+// app.use(session(secret: 'cat', 
+//         saveUninitialized: true,
+//         resave: true));
+
 app.use(express.static(path.join(__dirname, 'public'))); 
 
 // dev purposes
@@ -29,8 +37,8 @@ app.use(cors({
   origin: 'http://localhost:4200'
 }));
 
-
 app.use('/api/product', productRouter);
+app.use('/auth', authRouter);
 app.use('', indexRouter);
 // app.use('/users', usersRouter);
 

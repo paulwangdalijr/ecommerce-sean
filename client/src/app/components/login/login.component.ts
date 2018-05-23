@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
-
+    private authService: AuthService,
+    private router: Router
     ) { }
 
   ngOnInit() {
@@ -27,6 +27,28 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
+  }
+  onLoginSubmit(){
+    this.form.disable();
+    const form = {
+      username: this.form.get("email").value,
+      password: this.form.get("password").value
+    };
+   this.authService.login(form).subscribe((data:any)=>{
+     if(!data.success){
+       this.form.enable();
+     }else{
+       this.authService.storeUserToken(data.token);
+       this.authService.storeUseremail(data.user.username);
+       setTimeout(()=>{
+         if(data.user.type !== 'admin'){
+           this.router.navigate(['']);
+         }else{
+           this.router.navigate(['/admin']);
+         }
+       },1000);
+     }
+   });
   }
 
 }

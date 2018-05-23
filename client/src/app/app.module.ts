@@ -10,6 +10,10 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { SocialComponent } from './components/social/social.component';
+import { AuthGuard } from './guards/auth.guard';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,10 @@ import { SignupComponent } from './components/signup/signup.component';
     HomeComponent,
     AboutComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ProfileComponent,
+    SocialComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
