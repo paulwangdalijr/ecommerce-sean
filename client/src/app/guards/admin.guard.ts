@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service'; 
+import { map, filter, catchError, mergeMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -22,14 +23,16 @@ export class AdminGuard implements CanActivate {
 
    	this.redirectURL = state.url;
   	if(this.authService.loggedIn()){
-  		this.authService.getAdminProfile().subscribe((data:any)=>{
-  			if(data.success){
-  				return true;
-  			}else{
-  				this.router.navigate(['/profile']);
-  				return false;
-  			}
-  		});
+  		return this.authService.getAdminProfile().pipe(
+        map((data:any)=>{
+    			if(data.success){
+    				return true;
+    			}else{
+    				this.router.navigate(['/profile']);
+    				return false;
+          }
+  			})
+      );
   	}else{
   		this.router.navigate(['/login']);
   		return false;

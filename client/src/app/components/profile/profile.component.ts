@@ -18,9 +18,14 @@ export class ProfileComponent implements OnInit {
   	this.authService.getProfile().subscribe((profile:any) => {
       if(profile.success){
         this.email = profile.user.username;
-      }else{
-        this.authService.logout();
-        this.router.navigate(['/login']);
+      }
+      else{
+        if(this.authService.userType !== 'admin'){
+          this.authService.logout();
+          this.router.navigate(['']);
+        }else{
+          this.router.navigate(['admin']);          
+        }
       }
     })
   }

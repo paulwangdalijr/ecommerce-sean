@@ -36,10 +36,11 @@ export class LoginComponent implements OnInit {
     };
    this.authService.login(form).subscribe((data:any)=>{
      if(!data.success){
-       this.form.enable();
+       this.form.enable();  
      }else{
        this.authService.storeUserToken(data.token);
        this.authService.storeUseremail(data.user.username);
+       sessionStorage.clear();
        setTimeout(()=>{
          if(data.user.type !== 'admin'){
            this.router.navigate(['']);

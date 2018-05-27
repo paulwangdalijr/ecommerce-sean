@@ -10,3 +10,10 @@
 .card-body img{
 	height: 130px;
 }
+#properties-list-group{
+	width: 100%;
+}
+.fas.fa-shopping-cart{
+    font-size: 30px;
+    margin-left: 15px;
+}

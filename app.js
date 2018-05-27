@@ -5,8 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var productRouter = require('./routes/product');
 var authRouter = require('./routes/auth');
+var productRouter = require('./routes/product')(authRouter);
 
 const database = require('./config/database');
 // var usersRouter = require('./routes/users');
@@ -37,8 +37,9 @@ app.use(cors({
   origin: 'http://localhost:4200'
 }));
 
-app.use('/api/product', productRouter);
+
 app.use('/auth', authRouter);
+app.use('/api/product', productRouter)
 app.use('', indexRouter);
 // app.use('/users', usersRouter);
 

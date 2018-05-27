@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'social/:token', component: SocialComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'admin', component: AdminComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
   { path: '**', loadChildren: './product.module/product.module#ProductModule' }
   
   // { path: 'products', loadChildren: './products/products.module#ProductsModule' }

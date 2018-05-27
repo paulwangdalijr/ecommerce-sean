@@ -25,6 +25,7 @@ export class SocialComponent implements OnInit {
       if(data.success){
         this.authService.storeUseremail(data.user);
         this.router.navigate(['']);
+         sessionStorage.clear();
       }else{
         this.authService.logout();
         this.router.navigate(['/login']);

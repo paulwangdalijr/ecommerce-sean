@@ -41,11 +41,15 @@ router.use((req, res, next) => {
 });
 
 router.get('/profile', (req, res) => {
-	database.get("SELECT email FROM user WHERE ID = ?", [req.decoded.userId], (err,row)=>{
+	database.get("SELECT email, type FROM user WHERE ID = ?", [req.decoded.userId], (err,row)=>{
 		if(err){
 			res.json({ success: false, message: "Invalid user: " + err });
 		}else{
-			res.json({ success: true, user: row.email });
+            if(row.type !== 'admin'){
+                res.json({ success: true, user: row.email });
+            }else{
+                res.json({ success: false, message: "No profile for admin users" });
+            }
 		}
 	});
 });

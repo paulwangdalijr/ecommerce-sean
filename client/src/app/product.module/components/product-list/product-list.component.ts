@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
 import { Product } from '../../models/product';
+import { AuthService } from '../../../services/auth.service';
 import * as $ from 'jquery';
 
 @Component({
@@ -13,25 +14,27 @@ export class ProductListComponent implements OnInit {
   itemMargin;
   cardWidth;
   products;
+  categories;
+  selectedCategories = [];
   SelectedProduct = new Product();
   SelectedProperty = [];
 
   constructor(
     private cartService: CartService,
-    private productService: ProductService
-  ) { }
+    private productService: ProductService,
+    private authService: AuthService
+  ) {
 
-  addToCart(){
-    let product = new Product();
-    product.id = 111;
-    product.quantity = 1;
-    this.cartService.addToCart(product, 1);
+  }
+
+  addToCart(product, qty){
+    this.cartService.addToCart(product, qty);
   }
 
   getAllProducts(){
     this.products = [];
     this.productService.getAllProducts().subscribe((data:any)=>{
-      data.rows.forEach(element => {
+      data.product.forEach(element => {
         let ProductItem = new Product();
         ProductItem.id = element.ID;
         ProductItem.description = element.description;
@@ -39,8 +42,19 @@ export class ProductListComponent implements OnInit {
         ProductItem.price = element.price;
         ProductItem.quantity = element.quantity;
         ProductItem.property = JSON.parse(element.property);
+
+        let categories = [];
+        data.cat_prod.forEach(element => {          
+          if(ProductItem.id === element.PRODUCTID){
+            categories.push(element.CATEGORYID);
+          }
+          
+        });
+        ProductItem.categories = categories;
         this.products.push(ProductItem);
+
       });
+      this.categories = data.category;
       // this.Products=data.rows;
     });
   }
@@ -50,16 +64,66 @@ export class ProductListComponent implements OnInit {
     // console.log(product);
     // console.log(Object.getOwnPropertyNames(product.property));
     this.SelectedProperty = Object.getOwnPropertyNames(product.property);
+    console.log(this.SelectedProduct.property);
+  }
+
+  onChangeCheckBox(checked, category){
+    if(checked){
+      this.selectedCategories.push({ id: category.ID, name: category.name });
+    }else{
+      // this.selectedCategories.splice(this.selectedCategories.indexOf(id), 1);
+      let i = this.selectedCategories.findIndex(obj => obj.id === category.ID);
+      this.selectedCategories.splice(i, 1);
+    }
+
+    this.products.forEach(product => {
+      let flag = false;
+      product.categories.forEach(cat =>{
+        if(this.selectedCategories.findIndex(obj => obj.id === cat) >= 0){
+          flag = true;
+        }
+        // else{
+        //   product.show = false;
+        // }
+      });
+      product.show = flag;
+    });
+    
+    this.updateCartFunction();
+
+  }
+
+  filterByCategory(categories){
+    //console.log(this.selectedCategories + "     " +categories);
+    categories.forEach((elem)=>{
+       if(this.selectedCategories.includes(elem)){
+         return true;
+       }else{
+         return false;
+       }
+    });
   }
 
   ngOnInit() {
     this.getAllProducts();
     this.itemMargin='col-4';
-    // this.cardWidth = 'w-30';
+    // this.cardWidth = 'w-30'; 
+
+    if(this.authService.loggedIn()){
+      this.cartService.cart = JSON.parse(localStorage.getItem('cart')) || [];
+      console.log("local")
+    }else{
+      this.cartService.cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+      console.log("session")
+    } 
+    this.updateCartFunction();  
+  }
+
+  updateCartFunction(){
     $(document).ready(function(){
       $('.add-to-cart').on('click', function () {
         var cart = $('.fa-shopping-cart');
-        var imgtodrag = $(this).parent().parent().find("img").eq(0);
+        var imgtodrag = $(this).parent().parent().parent().parent().find("img").eq(0);
         // console.log(imgtodrag);
         if (imgtodrag) {
           var imgclone = imgtodrag.clone()
@@ -98,6 +162,8 @@ export class ProductListComponent implements OnInit {
       });
     });
   }
-  
+
+
+
 
 }

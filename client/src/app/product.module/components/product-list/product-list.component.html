@@ -1,31 +1,39 @@
-<router-outlet></router-outlet>
+<div class="float-right p-2">
+    <a routerLink="cart">
+      <i class="fas fa-shopping-cart"></i>
+      <span class="badge badge-primary badge-pill">{{cartService.cart.length}}</span>
+    </a>
+</div>
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item" (click)="x='Home'">Home</li>
+  <li class="breadcrumb-item">Library</li>
+  <li class="breadcrumb-item" (click)="print(x)">Data</li>
+</ol>
+
 <div class="row">
   <div class="form-group col-3">
     <h4>Categories</h4>
-    <div class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" id="customCheck1" checked="">
-      <label class="custom-control-label" for="customCheck1">Phones</label>
-    </div>
-    <div class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" id="customCheck2" >
-      <label class="custom-control-label" for="customCheck2">Shirts</label>
-    </div>
-    <div class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" id="customCheck3" >
-      <label class="custom-control-label" for="customCheck3">Bags</label>
+    <div *ngFor="let category of categories" class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" id="{{category.ID}}" (change)="onChangeCheckBox($event.target.checked, category)">
+      <label class="custom-control-label" for="{{category.ID}}">{{category.name}}</label>
     </div>
   </div>
   <div class="col-9">
-    <div class="row submenu">
-      <button (click)="itemMargin='col-3'">3</button>
-      <button (click)="itemMargin='col-4'">4</button>
+    <div class="row  d-inline-block">
+      <div  *ngFor="let category of selectedCategories" class="pr-2 d-inline-block">
+        <span class="badge badge-dark">{{category.name}}</span>
+      </div>   
+      <!-- <button (click)="itemMargin='col-3'">3</button>
+      <button (click)="itemMargin='col-4'">4</button> -->
     </div>
     <div class="row">
         <div [ngClass]="itemMargin" class="col-4" *ngFor="let product of products">           
-          <div [ngClass]="cardWidth" class="card">
+          <div *ngIf="selectedCategories.length === 0 || product.show" 
+            [ngClass]="cardWidth" class="card">
             <a href='#'class="card-link" data-toggle="modal" data-target="#modalProduct" (click)="onProductSelect(product)">
               <div class="card-body">     
-                  <img alt='test' src="http://www.paperairplanebehavioral.com/wp-content/uploads/2015/07/Airplane.png"/>           
+                  <img alt='test' src="http://www.paperairplanebehavioral.com/wp-content/uploads/2015/07/Airplane.png"/>
                 <h4 class="card-title">{{product.name}}</h4>
                 <h6 class="card-subtitle mb-2 text-muted">{{product.description}}</h6>
                 <p class="card-text"></p>
@@ -34,45 +42,75 @@
             <div class="card-footer">
               <!-- <button class='add-to-cart' (click)="productService.addToCart()">Add to cart</button>
               <a href="#" class="card-link">Another link</a> -->
-              <button type="button" class="btn btn-primary btn-sm add-to-cart" (click)="addToCart()">Add to cart</button>
-              <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>              
+              <div class="row">
+                <div class="col text-center">
+                  <button type="button" class="btn btn-primary add-to-cart" (click)="addToCart(product, 1)">Add to cart</button>
+                </div>
+                <!-- <div class="col">
+                  <label class="col-form-label " for="quantity">Qty</label>
+                  <input type="number" [(ngModel)]="product.orderQuantity" name="quantity" class="form-control">
+                </div> -->
+              </div>
+              <!-- <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>               -->
 
             </div>
           </div>      
         </div>
     </div>
   </div>
-</div>
-<div class="modal" id="modalProduct">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{SelectedProduct.name}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm">
-              <img alt='test' src="http://www.paperairplanebehavioral.com/wp-content/uploads/2015/07/Airplane.png"/>
-            </div>
-            <div class="col-sm">
-              <p>{{SelectedProduct.description}}</p>
-              <ul>
-                <!-- <li *ngFor="let prop of Object.getOwnPropertyNames(product.property)"><strong>prop</strong></li> -->
-                <!-- <li>{{Object.getOwnPropertyNames(SelectedProduct)}}</li> -->
-                <li *ngFor="let prop of SelectedProperty"><strong>{{prop}}: </strong>{{SelectedProduct.property[prop]}}</li>
-              </ul>
+  <div class="modal" id="modalProduct">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{SelectedProduct.name}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                <img alt='test' src="http://www.paperairplanebehavioral.com/wp-content/uploads/2015/07/Airplane.png"/>
+              </div>
+              <div class="col-sm">
+                <div class="row pb-3">
+                    <span class="text-primary">{{SelectedProduct.description}}</span>
+                </div>
+                <div class="row">
+                    <span class="text-primary">Available: </span>{{SelectedProduct.quantity}} pcs
+                </div>
+                <div class="row pb-3">
+                    <span class="text-primary">Price: </span>${{SelectedProduct.price}}
+                </div>
+                <div class="row" *ngFor="let prop of SelectedProperty">
+                  <span class="text-primary">{{prop}}: </span> 
+                  {{SelectedProduct.property[prop]}}
+                  <!-- <div id="properties-list-group" class="list-group">
+                      <span class="list-group-item list-group-item-action active">
+                        Properties
+                      </span>
+                  
+                      <span *ngFor="let prop of SelectedProperty" class="list-group-item list-group-item-action"><strong>{{prop}}: </strong>{{SelectedProduct.property[prop]}}
+                      </span>
+                  </div> -->
+                  
+                  <!-- <ul>                
+                    <li *ngFor="let prop of SelectedProperty"><strong>{{prop}}: </strong>{{SelectedProduct.property[prop]}}</li>
+                  </ul> -->
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primar add-to-cart" data-dismiss="modal">Add to cart</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primar add-to-cart" data-dismiss="modal" (click)="addToCart(SelectedProduct, 1)">Add to cart</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
+
+
+
 </div>
