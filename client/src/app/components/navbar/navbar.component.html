@@ -21,7 +21,8 @@
         <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 48px, 0px);">
           <a *ngIf="!authService.loggedIn()" class="dropdown-item" routerLink="login">Login</a>
           <a *ngIf="!authService.loggedIn()" class="dropdown-item" routerLink="signup">Sign Up</a>
-          <a *ngIf="authService.loggedIn()" class="dropdown-item" routerLink="profile">Profile</a>
+          <a *ngIf="authService.loggedIn() && !authService.isAdmin() " class="dropdown-item" routerLink="profile">Profile</a>
+          <a *ngIf="authService.isAdmin()" class="dropdown-item" routerLink="admin">Dashboard</a>
           <a *ngIf="authService.loggedIn()" (click)="onLogoutClick()" class="dropdown-item" routerLink="logout">Logout</a>
         </div>
       </div>

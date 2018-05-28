@@ -14,7 +14,7 @@ router.post('/login', function(req, res, next) {
     res.json({success: false, message: 'Password not provided!'});
   }else{
     database.get("SELECT * FROM user WHERE email = ? AND password = ? AND social = 0", [req.body.username, req.body.password], (err,row)=>{
-        if(err){
+        if(err || row === undefined){
             res.json({ success: false, message: "Username or password invalid" });
         }else{
             const token = jwt.sign({ userId: row.ID }, config.secret, { expiresIn: '24h'});

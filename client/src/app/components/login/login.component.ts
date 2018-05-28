@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
      }else{
        this.authService.storeUserToken(data.token);
        this.authService.storeUseremail(data.user.username);
+       localStorage.setItem('type', data.user.type);
        sessionStorage.clear();
        setTimeout(()=>{
          if(data.user.type !== 'admin'){

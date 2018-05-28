@@ -95,9 +95,17 @@ export class AuthService {
         if(data.success){
           this.authEmail = data.user.username;
           this.userType = data.user.type;
+          console.log(this.userType);
         }
         return data;
-      }));;   
+      }));
+  }
+  isAdmin(){
+    if(localStorage.getItem('type') === 'admin'){
+      return true;
+    }else{
+      return false;
+    }
   }
 }
 

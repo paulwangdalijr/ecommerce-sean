@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { ProductService } from '../../product.module/services/product.service';
-import { Product } from '../../product.module/models/product';
+import { AuthService } from '../../../services/auth.service';
+import { ProductService } from '../../../product.module/services/product.service';
+import { Product } from '../../../product.module/models/product';
+
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.css']
 })
-export class AdminComponent implements OnInit {
+export class ProductsComponent implements OnInit {
 
   products;
   modalTitle;
@@ -114,6 +115,11 @@ export class AdminComponent implements OnInit {
     product.property = {};
     this.setProductSelected(product); 
   }
+  onDeleteProductClick(product){
+    this.operation = "delete";
+    this.modalTitle = "Delete Product";
+    this.setProductSelected(product); 
+  }
   onDeletePropertyClick(product, property){
     delete product.property[property];
     this.setProductSelected(product);
@@ -131,12 +137,17 @@ export class AdminComponent implements OnInit {
   }
   onAddClick(){
     this.productService.addNewProduct(this.productSelected, this.productSelectedCategories).subscribe((data:any)=>{
-      console.log(data);
+      this.getAllProducts();
     });
   }
   onUpdateClick(){
     this.productService.editProduct(this.productSelected, this.productSelectedCategories).subscribe((data:any)=>{
-      console.log(data);
+      this.getAllProducts();
+    });
+  }
+  onDeleteClick(){
+    this.productService.deleteProduct(this.productSelected.id).subscribe((data:any)=>{
+      this.getAllProducts();
     });
   }
 

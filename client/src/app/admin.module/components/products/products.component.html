@@ -25,7 +25,8 @@
 				      <td>{{product.quantity}}</td>
 				      <td>{{product.price}}</td>
 				      <td>
-				      	  <button class="btn btn-danger float-right">Delete</button>
+				      	  <button class="btn btn-danger float-right" data-toggle="modal" data-target="#modalProduct" 
+				      	  (click)="onDeleteProductClick(product)">Delete</button>
 				      	  <button class="btn btn-warning float-right" data-toggle="modal" data-target="#modalProduct" 
 				      	  (click)="onEditProductClick(product)">Edit</button>
 				      	  <button class="btn btn-info float-right" data-toggle="modal" data-target="#modalProduct" 
@@ -51,7 +52,14 @@
 		        </button>
 		      </div>
 		      <div class="modal-body">
-		        <div class="container">
+		      	<div *ngIf="operation === 'delete'" class="container">
+		      		<div class="alert alert-dismissible alert-danger">
+					  <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
+					  <h4 class="alert-heading">Warning!</h4>
+					  <p class="mb-0">Confirm deletion of {{productSelected.name}}.</p>
+					</div>
+		      	</div>
+		        <div *ngIf="operation !== 'delete'" class="container">
 		        	<div class="row">
 		        		<div class="col-3">
 		        			<span>Categories</span>
@@ -138,6 +146,7 @@
       <div class="modal-footer">
         <button *ngIf="operation==='add'" type="button" class="btn btn-primary" data-dismiss="modal" (click)="onAddClick()" >ADD</button>
         <button *ngIf="operation==='edit'" type="button" class="btn btn-primary" data-dismiss="modal" (click)="onUpdateClick()" >UPDATE</button>
+        <button *ngIf="operation==='delete'" type="button" class="btn btn-primary" data-dismiss="modal" (click)="onDeleteClick()" >DELETE</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>

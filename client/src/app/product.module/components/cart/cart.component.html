@@ -3,11 +3,15 @@
 		<div class="col-4">
 			<div class="card border-primary mb-3" style="max-width: 20rem;">
 			  <div class="card-header">
-			  	<p>Apply promo!</p>
+			  	<h4>Total: <span class="float-right">${{total}}</span></h4>
 			  </div>
 			  <div class="card-body">
-			    <h4 class="card-title">Avail promo!</h4>
-			    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			    <!-- <h4 class="card-title">Avail promo!</h4> -->
+			    <p class="card-text">Delivery fee: <span class="float-right">FREE</span></p>
+			    <p class="card-text">Discount: <span class="float-right">N/A</span></p>
+			  </div>
+			  <div class="card-footer">
+			  	<button type="button" class="btn btn-primary" style="width: 100%">Checkout</button>
 			  </div>
 			</div>
 		</div>
@@ -21,9 +25,9 @@
 							  	<img alt="test">
 							  </div>
 						  	<div class="col">
-
 							    <h4 class="card-title">{{product.name}}<span class="float-right">${{product.price}}</span></h4>
 							    <p class="card-text">{{product.description}}</p>
+							    <button type="button" class="btn btn-primary btn-sm float-right">Remove</button>
 							</div>
 						</div>
 					  </div>

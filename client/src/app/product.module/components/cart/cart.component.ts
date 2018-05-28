@@ -9,7 +9,7 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-
+  total = 0;
   constructor(
   	private productService: ProductService,
   	private cartService: CartService,
@@ -24,7 +24,12 @@ export class CartComponent implements OnInit {
     //   this.cartService.cart = JSON.parse(sessionStorage.getItem('cart')) || [];
     //   console.log("session")
     // }
+    this.total = 0;
     this.cartService.getCart();
+    this.cartService.cart.forEach(product => {
+      this.total += product.price;
+    });
+
     console.log(this.cartService.cart);
 
   }

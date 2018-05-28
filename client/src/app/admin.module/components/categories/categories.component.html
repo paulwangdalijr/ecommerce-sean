@@ -1,0 +1,62 @@
+<div class="container">
+	<div class="row p-2 pr-3">
+		<button type="button" class="btn btn-success ml-auto" (click)="show = !show">Add Category</button>
+	</div>
+	<!-- <div class="row" style="width: 100%; padding-top: 1em">	 -->
+	<div class="row" style="width: 100%">
+		<div class="col-lg-6">
+			<table id="tableCategories" class="">
+			  <thead>
+			    <tr class="table-primary">
+			      <th scope="col">ID</th>
+			      <th scope="col">NAME</th>
+			      <th scope="col" class="text-lg-right">Actions</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  	<tr *ngFor="let category of categories; 
+			             let isOdd=odd;
+			             let isEven=even" 
+				      [class.table-dark]="isOdd" 
+				      [class.table-light]="isEven">
+				      <td>{{category.ID}}</td>
+				      <td>{{category.name}}</td>
+				      <td><button class="btn btn-danger float-right" (click)="onDeleteClick(category)" data-toggle="modal" data-target="#modalCategory" >Delete</button></td>
+				  </tr>
+			  </tbody>
+			</table>
+		</div>
+		<div *ngIf="show" id='newCategory' class="col-lg-6 border-black">
+			<h2> Category Name: </h2>
+			<input class="form-control form-control-lg" type="text" [(ngModel)]="newCategory" placeholder="*Name" name="name">
+			<button type="button" class="btn btn-primary float-right" (click)="addCategory()">Add!</button>
+		</div>
+	</div>
+	<!-- </div> -->
+</div>
+
+<div class="modal" id="modalCategory">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+	    <div class="form-group">
+		      <div class="modal-header">    
+		        <h5 class="modal-title">Delete Category</h5> 	
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">		      	
+	      		<div class="alert alert-dismissible alert-danger">
+				  <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
+				  <h4 class="alert-heading">Warning!</h4>
+				  <p class="mb-0">Confirm deletion of {{selectedCategory.name}}.</p>
+				</div>
+		    </div>
+	    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteCategory()" >DELETE</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

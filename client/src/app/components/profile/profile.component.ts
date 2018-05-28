@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
         this.email = profile.user.username;
       }
       else{
-        if(this.authService.userType !== 'admin'){
+        if(localStorage.getItem('type') !== 'admin'){
           this.authService.logout();
           this.router.navigate(['']);
         }else{

@@ -22,13 +22,16 @@ const routes: Routes = [
   // },
   // { path: '', component: HomeComponent },
 
+
+  // { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
+
   { path: '', loadChildren: './product.module/product.module#ProductModule' },
   { path: 'about', component: AboutComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'social/:token', component: SocialComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
+  { path: 'admin', loadChildren: './admin.module/admin.module#AdminModule', canActivate: [AdminGuard] },
   { path: '**', loadChildren: './product.module/product.module#ProductModule' }
   
   // { path: 'products', loadChildren: './products/products.module#ProductsModule' }

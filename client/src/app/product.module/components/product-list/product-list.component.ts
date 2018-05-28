@@ -111,10 +111,8 @@ export class ProductListComponent implements OnInit {
 
     if(this.authService.loggedIn()){
       this.cartService.cart = JSON.parse(localStorage.getItem('cart')) || [];
-      console.log("local")
     }else{
       this.cartService.cart = JSON.parse(sessionStorage.getItem('cart')) || [];
-      console.log("session")
     } 
     this.updateCartFunction();  
   }
@@ -124,7 +122,7 @@ export class ProductListComponent implements OnInit {
       $('.add-to-cart').on('click', function () {
         var cart = $('.fa-shopping-cart');
         var imgtodrag = $(this).parent().parent().parent().parent().find("img").eq(0);
-        // console.log(imgtodrag);
+        console.log(imgtodrag);
         if (imgtodrag) {
           var imgclone = imgtodrag.clone()
           .offset({
