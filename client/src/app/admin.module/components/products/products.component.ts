@@ -79,7 +79,7 @@ export class ProductsComponent implements OnInit {
     TempProduct.property = product.property;
     TempProduct.categories = product.categories || [];
 
-    this.productSelectedCategories = [];
+    // this.productSelectedCategories = [];
     this.categories.forEach(cat => {
       cat.checked = false;
     });
@@ -93,7 +93,7 @@ export class ProductsComponent implements OnInit {
       if(i >= 0){
         this.categories[i].checked = true;
       }
-      this.productSelectedCategories.push(cat_prod);
+      // this.productSelectedCategories.push(cat_prod);
     });
     this.productSelected = TempProduct;
     this.productSelectedProperty = Object.getOwnPropertyNames(TempProduct.property);
@@ -115,14 +115,11 @@ export class ProductsComponent implements OnInit {
     product.property = {};
     this.setProductSelected(product); 
   }
-<<<<<<< HEAD
   onDeleteProductClick(product){
     this.operation = "delete";
     this.modalTitle = "Delete Product";
     this.setProductSelected(product); 
   }
-=======
->>>>>>> ee0dd8f3b46aa18f4b33cbbcf6dfbb9f42eec79b
   onDeletePropertyClick(product, property){
     delete product.property[property];
     this.setProductSelected(product);
@@ -138,27 +135,19 @@ export class ProductsComponent implements OnInit {
       this.setProductSelected(product);
     }
   }
-  onAddClick(){
+  onAddClick(){    
     this.productService.addNewProduct(this.productSelected, this.productSelectedCategories).subscribe((data:any)=>{
-<<<<<<< HEAD
       this.getAllProducts();
-=======
-      console.log(data);
->>>>>>> ee0dd8f3b46aa18f4b33cbbcf6dfbb9f42eec79b
     });
   }
   onUpdateClick(){
     this.productService.editProduct(this.productSelected, this.productSelectedCategories).subscribe((data:any)=>{
-<<<<<<< HEAD
       this.getAllProducts();
     });
   }
   onDeleteClick(){
     this.productService.deleteProduct(this.productSelected.id).subscribe((data:any)=>{
       this.getAllProducts();
-=======
-      console.log(data);
->>>>>>> ee0dd8f3b46aa18f4b33cbbcf6dfbb9f42eec79b
     });
   }
 
@@ -173,6 +162,7 @@ export class ProductsComponent implements OnInit {
       let i = this.productSelectedCategories.findIndex(cat => cat.CATEGORYID === catID);
       this.productSelectedCategories.splice(i, 1);
     }
+
   }
 
   isChecked(categories, id){
