@@ -14,6 +14,38 @@ checkAdmin = (id, cb) =>{
     });
 }
 
+updateCategoryTable = (productID, req, res) =>{
+	let cat_prod = req.body.cat_prod;
+	cat_prod.forEach(obj => {
+		obj.PRODUCTID = productID;	
+	});	
+	console.log(productID);
+	
+	stmt = database.prepare("DELETE FROM category_product WHERE PRODUCTID = ?");
+	stmt.run(productID, (err,row)=>{		
+		if(err){
+			res.json({success: false, message: "Category operation failed"});
+		}else{
+
+			let counter = cat_prod.length;
+			cat_prod.forEach(obj => {
+				stmt = database.prepare("INSERT OR IGNORE INTO category_product VALUES (?,?)");
+				stmt.run(obj.CATEGORYID,obj.PRODUCTID, (err,row)=>{
+					counter -= 1;
+					if(err){
+						res.json({success: false, message: "Category operation failed"});
+					}else{
+						if(counter === 0){
+							res.json({success: true, message: "Product added"});
+						}
+					}
+				});		
+			});	
+
+		}
+	});			
+}
+
 
 // take authRouter as parameter and return this route
 module.exports = (authRouter) => {
@@ -50,25 +82,26 @@ module.exports = (authRouter) => {
 				  		res.json({success: false, message: "Product operation failed"});
 				  	}else{
 				  		// res.json({success: true, id: stmt.lastID});
-				  		let cat_prod = req.body.cat_prod;
-				  		cat_prod.forEach(obj => {
-				  			obj.PRODUCTID = stmt.lastID;	
-				  		});	
+				  		updateCategoryTable(stmt.lastID, req, res);
+				  // 		let cat_prod = req.body.cat_prod;
+				  // 		cat_prod.forEach(obj => {
+				  // 			obj.PRODUCTID = stmt.lastID;	
+				  // 		});	
 
-				  		let counter = cat_prod.length;
-				  		cat_prod.forEach(obj => {
-				  			stmt = database.prepare("INSERT OR IGNORE INTO category_product VALUES (?,?)");
-							stmt.run(obj.CATEGORYID,obj.PRODUCTID, (err,row)=>{
-								counter -= 1;
-								if(err){
-									res.json({success: false, message: "Category operation failed"});
-								}else{
-									if(counter === 0){
-										res.json({success: true, message: "Product added"});
-									}
-								}
-							});		
-						});		  			  		
+				  // 		let counter = cat_prod.length;
+				  // 		cat_prod.forEach(obj => {
+				  // 			stmt = database.prepare("INSERT OR IGNORE INTO category_product VALUES (?,?)");
+						// 	stmt.run(obj.CATEGORYID,obj.PRODUCTID, (err,row)=>{
+						// 		counter -= 1;
+						// 		if(err){
+						// 			res.json({success: false, message: "Category operation failed"});
+						// 		}else{
+						// 			if(counter === 0){
+						// 				res.json({success: true, message: "Product added"});
+						// 			}
+						// 		}
+						// 	});		
+						// });		  			  		
 				  	}
 				});
 			}else{
@@ -78,21 +111,24 @@ module.exports = (authRouter) => {
 	});
 
 	authRouter.put('/editProduct', (req,res)=>{
-		if(checkAdmin(req.decoded.id)){
-			if(req.body.product.id){
-				stmt = database.prepare("UPDATE product SET name = ?, description = ?, price = ?, quantity = ?, property = ? WHERE ID = ?");
-				stmt.run(req.body.product.name,req.body.product.description, req.body.product.price, req.body.product.quantity, JSON.stringify(req.body.product.property), req.body.product.id, (err,row)=>{
-				  	if(err){
-				  		res.json({success: false, message: "Operation failed"});
-				  	}else{
-				  		res.json({success: true, message: "Product updated"});
-				  	}
-				});
-			}else{
-				res.json({success: false, message: "Product ID is mandatory"});
-			}			
+		if(req.body.product.id){
+			checkAdmin(req.decoded.userId, (flag) => {	
+				if(flag){
+					stmt = database.prepare("UPDATE product SET name = ?, description = ?, price = ?, quantity = ?, property = ? WHERE ID = ?");
+					stmt.run(req.body.product.name,req.body.product.description, req.body.product.price, req.body.product.quantity, JSON.stringify(req.body.product.property), req.body.product.id, (err,row)=>{
+					  	if(err){
+					  		res.json({success: false, message: "Operation failed"});
+					  	}else{
+					  		// res.json({success: true, message: "Product updated"});
+					  		updateCategoryTable(req.body.product.id, req, res);
+					  	}
+					});
+				}else{
+					res.json({success: false, message: "User not authorized"});
+				}
+			});
 		}else{
-			res.json({success: false, message: "User not authorized"});
+			res.json({success: false, message: "Product ID is mandatory"});
 		}
 	});	
 

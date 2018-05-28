@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { ProductService } from '../../product.module/services/product.service';
-import { Product } from '../../product.module/models/product';
+import { AuthService } from '../../../services/auth.service';
+import { ProductService } from '../../../product.module/services/product.service';
+import { Product } from '../../../product.module/models/product';
+
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.css']
 })
-export class AdminComponent implements OnInit {
+export class ProductsComponent implements OnInit {
 
   products;
   modalTitle;
