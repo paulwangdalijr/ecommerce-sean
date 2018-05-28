@@ -28,6 +28,7 @@ export class ProductService {
     let req = { product: x_product, cat_prod: x_cat_prod}
     return this.http.put(this.domain + '/auth/editProduct', req, this.authService.options ); 
   }
+<<<<<<< HEAD
   deleteProduct(id){
   	this.authService.createAuthenticationHeaders();
   	return this.http.delete(this.domain + '/auth/deleteProduct/'+ id, this.authService.options ); 
@@ -42,6 +43,8 @@ export class ProductService {
     this.authService.createAuthenticationHeaders();
     return this.http.delete(this.domain + '/auth/deleteCategory/'+ id, this.authService.options ); 
   }
+=======
+>>>>>>> ee0dd8f3b46aa18f4b33cbbcf6dfbb9f42eec79b
 
 
 }

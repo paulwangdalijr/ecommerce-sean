@@ -14,11 +14,19 @@ checkAdmin = (id, cb) =>{
     });
 }
 
+<<<<<<< HEAD
 updateCategoryTable = (productID, req, res, operation) =>{
+=======
+updateCategoryTable = (productID, req, res) =>{
+>>>>>>> ee0dd8f3b46aa18f4b33cbbcf6dfbb9f42eec79b
 	let cat_prod = req.body.cat_prod;
 	cat_prod.forEach(obj => {
 		obj.PRODUCTID = productID;	
 	});	
+<<<<<<< HEAD
+=======
+	console.log(productID);
+>>>>>>> ee0dd8f3b46aa18f4b33cbbcf6dfbb9f42eec79b
 	
 	stmt = database.prepare("DELETE FROM category_product WHERE PRODUCTID = ?");
 	stmt.run(productID, (err,row)=>{		
@@ -35,7 +43,11 @@ updateCategoryTable = (productID, req, res, operation) =>{
 						res.json({success: false, message: "Category operation failed"});
 					}else{
 						if(counter === 0){
+<<<<<<< HEAD
 							res.json({success: true, message: "Product " + operation});
+=======
+							res.json({success: true, message: "Product added"});
+>>>>>>> ee0dd8f3b46aa18f4b33cbbcf6dfbb9f42eec79b
 						}
 					}
 				});		
@@ -81,7 +93,11 @@ module.exports = (authRouter) => {
 				  		res.json({success: false, message: "Product operation failed"});
 				  	}else{
 				  		// res.json({success: true, id: stmt.lastID});
+<<<<<<< HEAD
 				  		updateCategoryTable(stmt.lastID, req, res, "added");
+=======
+				  		updateCategoryTable(stmt.lastID, req, res);
+>>>>>>> ee0dd8f3b46aa18f4b33cbbcf6dfbb9f42eec79b
 				  // 		let cat_prod = req.body.cat_prod;
 				  // 		cat_prod.forEach(obj => {
 				  // 			obj.PRODUCTID = stmt.lastID;	
@@ -119,7 +135,11 @@ module.exports = (authRouter) => {
 					  		res.json({success: false, message: "Operation failed"});
 					  	}else{
 					  		// res.json({success: true, message: "Product updated"});
+<<<<<<< HEAD
 					  		updateCategoryTable(req.body.product.id, req, res, "updated");
+=======
+					  		updateCategoryTable(req.body.product.id, req, res);
+>>>>>>> ee0dd8f3b46aa18f4b33cbbcf6dfbb9f42eec79b
 					  	}
 					});
 				}else{

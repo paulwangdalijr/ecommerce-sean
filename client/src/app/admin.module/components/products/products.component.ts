@@ -115,11 +115,14 @@ export class ProductsComponent implements OnInit {
     product.property = {};
     this.setProductSelected(product); 
   }
+<<<<<<< HEAD
   onDeleteProductClick(product){
     this.operation = "delete";
     this.modalTitle = "Delete Product";
     this.setProductSelected(product); 
   }
+=======
+>>>>>>> ee0dd8f3b46aa18f4b33cbbcf6dfbb9f42eec79b
   onDeletePropertyClick(product, property){
     delete product.property[property];
     this.setProductSelected(product);
@@ -137,17 +140,25 @@ export class ProductsComponent implements OnInit {
   }
   onAddClick(){
     this.productService.addNewProduct(this.productSelected, this.productSelectedCategories).subscribe((data:any)=>{
+<<<<<<< HEAD
       this.getAllProducts();
+=======
+      console.log(data);
+>>>>>>> ee0dd8f3b46aa18f4b33cbbcf6dfbb9f42eec79b
     });
   }
   onUpdateClick(){
     this.productService.editProduct(this.productSelected, this.productSelectedCategories).subscribe((data:any)=>{
+<<<<<<< HEAD
       this.getAllProducts();
     });
   }
   onDeleteClick(){
     this.productService.deleteProduct(this.productSelected.id).subscribe((data:any)=>{
       this.getAllProducts();
+=======
+      console.log(data);
+>>>>>>> ee0dd8f3b46aa18f4b33cbbcf6dfbb9f42eec79b
     });
   }
 

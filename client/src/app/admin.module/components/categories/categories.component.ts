@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { AuthService } from '../../../services/auth.service';
 import { ProductService } from '../../../product.module/services/product.service';
+=======
+>>>>>>> ee0dd8f3b46aa18f4b33cbbcf6dfbb9f42eec79b
 
 @Component({
   selector: 'app-categories',
@@ -8,6 +11,7 @@ import { ProductService } from '../../../product.module/services/product.service
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
+<<<<<<< HEAD
   
   categories = [];
   newCategory = "";
@@ -40,6 +44,12 @@ export class CategoriesComponent implements OnInit {
     this.productService.deleteCategory(this.selectedCategory.ID).subscribe((data:any)=>{
       this.getAllCategories();
     });
+=======
+
+  constructor() { }
+
+  ngOnInit() {
+>>>>>>> ee0dd8f3b46aa18f4b33cbbcf6dfbb9f42eec79b
   }
 
 }
