@@ -36,6 +36,9 @@ export class CartComponent implements OnInit {
   onClickRemove(product){
     this.cartService.remoteFromCart(product.id);
   }
+  checkout(){
+    
+  }
 
 
 

@@ -71,6 +71,10 @@ module.exports = (authRouter) => {
 	    });
 	});
 
+	// router.post('/createOrder', (req, res, next) => {
+	// 	if()
+	// });
+
 	authRouter.post('/newProduct', (req,res)=>{
 		checkAdmin(req.decoded.userId, (flag) => {	
 			if(flag){

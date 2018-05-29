@@ -28,8 +28,8 @@ const productRoutes: Routes = [
       component: CartComponent
     },
     {
-      path: 'payment',
-      component: PaymentComponent
+      path: 'checkout',
+      component: CheckoutComponent
     }
 ];
 

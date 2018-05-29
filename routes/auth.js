@@ -28,7 +28,7 @@ router.post('/register', (req, res) => {
     }else if( !req.body.password && req.body.password === '' ){
         res.json({ success: false, message: 'You must provide an password' });
     }else{
-        stmt = database.prepare("INSERT OR IGNORE INTO user VALUES (NULL,?,?,?)");
+        stmt = database.prepare("INSERT OR IGNORE INTO user VALUES (NULL,?,?,?,?)");
         stmt.run(req.body.email.toLowerCase(),req.body.password,'user', 0, (err,row)=>{
             if(err){
 				res.json({success: false, message: "User operation failed"});                

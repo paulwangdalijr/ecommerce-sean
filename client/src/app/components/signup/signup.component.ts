@@ -78,16 +78,18 @@ export class SignupComponent implements OnInit {
     }
     this.authService.registerUser(user).subscribe( (data:any) => {
       if( !data.success ){
+        this.message = data.message;
         this.messageClass = 'alert alert-danger';
         this.processing = false;    
-        this.form.enable;            
+        this.form.enable;                    
       }else{
         this.messageClass = 'alert alert-success';
+        this.message = data.message + ". Redirecting...";
         setTimeout( () => {
           this.router.navigate(['/login']);
-        }, 1000)
+        }, 2000)
       }
-      this.message = data.message;
+      
     });
   }
 

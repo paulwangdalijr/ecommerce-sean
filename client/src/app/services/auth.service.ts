@@ -48,7 +48,7 @@ export class AuthService {
     return this.http.get(this.domain + "/auth/checkEmail/" + email);
   }
   registerUser(user){
-    return this.http.post(this.domain + '/authentication/register', user);        
+    return this.http.post(this.domain + '/auth/register', user);        
 
   }
   storeUserToken(token){
