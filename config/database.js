@@ -3,11 +3,12 @@ var db = new sqlite3.Database('shop');
 
 db.serialize(function() {
   // db.run("DELETE FROM product WHERE ID >= 8 AND ID <= 17");
+  // db.run("DROP TABLE salesorder");
   db.run("CREATE TABLE IF NOT EXISTS product (ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, price NUMBER, quantity NUMBER, property TEXT)");
   db.run("CREATE TABLE IF NOT EXISTS category (ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)");  
   db.run("CREATE TABLE IF NOT EXISTS category_product (CATEGORYID INTEGER, PRODUCTID INTEGER, PRIMARY KEY(CATEGORYID, PRODUCTID), FOREIGN KEY(CATEGORYID) REFERENCES category(ID), FOREIGN KEY(PRODUCTID) REFERENCES product(ID) )");
   db.run("CREATE TABLE IF NOT EXISTS user (ID INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT UNIQUE, password TEXT, type TEXT, social NUMBER)") ;
-  db.run("CREATE TABLE IF NOT EXISTS salesorder (ID INTEGER PRIMARY KEY AUTOINCREMENT, buyer TEXT, date DATE, items TEXT)") ;
+  db.run("CREATE TABLE IF NOT EXISTS salesorder (ID INTEGER PRIMARY KEY AUTOINCREMENT, date DATE, buyer TEXT,  items TEXT)") ;
 
   // const property = {
   //     color: "Pink",

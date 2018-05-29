@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   	this.createForm();
+    this.authService.testing = "testing!!!!";
+    console.log("testing set!")
   }
 
   createForm(){

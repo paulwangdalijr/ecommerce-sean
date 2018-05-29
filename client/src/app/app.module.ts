@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedFormModule} from './shared-form/shared-form.module'
 
 import { AppRoutingModule } from './/app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,7 +31,8 @@ import { AuthGuard } from './guards/auth.guard';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedFormModule
   ],
   providers: [],
   bootstrap: [AppComponent]

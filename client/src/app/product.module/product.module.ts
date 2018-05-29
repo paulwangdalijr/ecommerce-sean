@@ -6,13 +6,17 @@ import { ProductComponent } from './product.component';
 import { CartComponent } from './components/cart/cart.component';
 import { FormsModule } from '@angular/forms';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+// import { SharedFormModule} from '../shared-form/shared-form.module'
+import { SharedFormModule} from '../shared-form/shared-form.module'
+
 import { PaymentComponent } from './components/payment/payment.component';
 
 @NgModule({
   imports: [
     CommonModule,
     ProductRoutingModule,
-    FormsModule
+    FormsModule,
+    SharedFormModule
   ],
   declarations: [ProductListComponent, ProductComponent, CartComponent, CheckoutComponent, PaymentComponent]
 })

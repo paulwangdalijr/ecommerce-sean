@@ -14,7 +14,9 @@ export class AboutComponent implements OnInit {
   	) { }
 
   ngOnInit() {
-
+  	// console.log(this.authService.testing);
+  	
+  	console.log(this.authService.testing);
   }
 
 }

@@ -13,6 +13,7 @@ export class AuthService {
   userType;
   jwtHelper;
   options;
+  testing;
 
   domain = 'http://localhost:3000'; //dev
 
