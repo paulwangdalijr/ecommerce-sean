@@ -33,6 +33,9 @@ export class CartComponent implements OnInit {
     console.log(this.cartService.cart);
 
   }
+  onClickRemove(product){
+    this.cartService.remoteFromCart(product.id);
+  }
 
 
 

@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  messageClass;
+  message;
   form: FormGroup;
 
   constructor(
@@ -36,19 +37,30 @@ export class LoginComponent implements OnInit {
     };
    this.authService.login(form).subscribe((data:any)=>{
      if(!data.success){
+       this.messageClass = 'alert alert-danger';
+       this.message = data.message;
        this.form.enable();  
+       setTimeout(()=>{
+        this.message="";
+        this.messageClass = '';
+        
+        },2000);
      }else{
+        this.messageClass = 'alert alert-success';
+        this.message = "Login successful";
        this.authService.storeUserToken(data.token);
        this.authService.storeUseremail(data.user.username);
        localStorage.setItem('type', data.user.type);
        sessionStorage.clear();
-       setTimeout(()=>{
+       setTimeout(()=>{            
          if(data.user.type !== 'admin'){
            this.router.navigate(['']);
          }else{
            this.router.navigate(['/admin']);
          }
-       },1000);
+         this.message="";     
+         this.messageClass = '';
+       },2000);
      }
    });
   }

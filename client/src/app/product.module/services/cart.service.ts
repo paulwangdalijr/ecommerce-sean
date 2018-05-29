@@ -34,6 +34,16 @@ export class CartService {
       sessionStorage.setItem('cart', JSON.stringify(this.cart));
     }
   }
+  remoteFromCart(id){
+    let i = this.cart.findIndex(prod => prod.id === id);
+    this.cart.splice(i, 1);
+
+    if(this.authService.loggedIn()){     
+      localStorage.setItem('cart', JSON.stringify(this.cart));
+    }else{
+      sessionStorage.setItem('cart', JSON.stringify(this.cart));
+    }
+  }
   getCart(){
     if(this.authService.loggedIn()){
       this.cart = JSON.parse(localStorage.getItem('cart')) || [];

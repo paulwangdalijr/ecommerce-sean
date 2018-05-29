@@ -27,8 +27,44 @@ export class ProductListComponent implements OnInit {
 
   }
 
-  addToCart(product, qty){
+  addToCart(img, product, qty){
     this.cartService.addToCart(product, qty);
+    var cart = $('.fa-shopping-cart');
+    var imgtodrag = $(img);
+    if (imgtodrag) {
+      var imgclone = imgtodrag.clone()
+      .offset({
+      top: imgtodrag.offset().top,
+      left: imgtodrag.offset().left
+      })
+          .css({
+          'opacity': '0.5',
+              'position': 'absolute',
+              'height': '150px',
+              'width': '150px',
+              'z-index': '100'
+      })
+          .appendTo($('body'))
+          .animate({
+          'top': cart.offset().top + 10,
+              'left': cart.offset().left + 10,
+              'width': 75,
+              'height': 75
+      }, 1000);
+      
+      // setTimeout(function () {
+      //     cart.effect("shake", {
+      //         times: 2
+      //     }, 200);
+      // }, 1500);
+
+      imgclone.animate({
+          'width': 0,
+              'height': 0
+      }, function () {
+          $(this).detach()
+      });
+    }
   }
 
   getAllProducts(){
@@ -89,7 +125,7 @@ export class ProductListComponent implements OnInit {
       product.show = flag;
     });
     
-    this.updateCartFunction();
+    // this.updateCartFunction();
 
   }
 
@@ -104,6 +140,23 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+  filterProducts(){    
+      return this.products.filter(x => {
+        if(this.selectedCategories.length === 0){
+          return true;
+        }else{
+          return x.show;
+        }
+      });
+    
+    // console.log("ASDASD")
+    // if(this.selectedCategories.length === 0 || this.products.filter(x => x.show)){
+    //   return true;
+    // }else{
+    //   return false;
+    // }
+  }
+
   ngOnInit() {
     this.getAllProducts();
     this.itemMargin='col-4';
@@ -114,52 +167,17 @@ export class ProductListComponent implements OnInit {
     }else{
       this.cartService.cart = JSON.parse(sessionStorage.getItem('cart')) || [];
     } 
-    this.updateCartFunction();  
+    // this.updateCartFunction();  
   }
 
-  updateCartFunction(){
-    $(document).ready(function(){
-      $('.add-to-cart').on('click', function () {
-        var cart = $('.fa-shopping-cart');
-        var imgtodrag = $(this).parent().parent().parent().parent().find("img").eq(0);
-        console.log(imgtodrag);
-        if (imgtodrag) {
-          var imgclone = imgtodrag.clone()
-          .offset({
-          top: imgtodrag.offset().top,
-          left: imgtodrag.offset().left
-          })
-              .css({
-              'opacity': '0.5',
-                  'position': 'absolute',
-                  'height': '150px',
-                  'width': '150px',
-                  'z-index': '100'
-          })
-              .appendTo($('body'))
-              .animate({
-              'top': cart.offset().top + 10,
-                  'left': cart.offset().left + 10,
-                  'width': 75,
-                  'height': 75
-          }, 1000);
-          
-          // setTimeout(function () {
-          //     cart.effect("shake", {
-          //         times: 2
-          //     }, 200);
-          // }, 1500);
-
-          imgclone.animate({
-              'width': 0,
-                  'height': 0
-          }, function () {
-              $(this).detach()
-          });
-        }
-      });
-    });
-  }
+  // updateCartFunction(){
+  //   $(document).ready(function(){
+  //     console.log('test');
+  //     $('.add-to-cart').on('click', function () {
+        
+  //     });
+  //   });
+  // }
 
 
 

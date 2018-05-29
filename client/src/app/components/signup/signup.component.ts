@@ -11,6 +11,10 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
 
   form: FormGroup;
+  message;
+  messageClass;
+  emailValid;
+  processing;
 
   constructor(
                 private authService: AuthService,
@@ -44,6 +48,47 @@ export class SignupComponent implements OnInit {
   }  
 
   ngOnInit() {
+  }
+
+  checkEmail(){
+    this.processing = true;
+    if(!this.form.get('email').errors){
+      this.authService.checkEmail(this.form.get("email").value).subscribe((data:any)=>{
+        if(data.success){
+          this.messageClass = 'alert alert-success';
+          this.emailValid = true;
+        }else{
+          this.messageClass = 'alert alert-danger';
+          this.emailValid = false;          
+        }
+        this.message = data.message;    
+        this.processing = false;          
+      });
+    }
+    console.log(this.form.get('email').errors);
+    console.log(this.emailValid);
+  }
+
+  onRegisterSubmit(){
+    this.processing = true;    
+    this.form.disable;
+    const user = {
+      email: this.form.get('email').value,
+      password: this.form.get('password').value
+    }
+    this.authService.registerUser(user).subscribe( (data:any) => {
+      if( !data.success ){
+        this.messageClass = 'alert alert-danger';
+        this.processing = false;    
+        this.form.enable;            
+      }else{
+        this.messageClass = 'alert alert-success';
+        setTimeout( () => {
+          this.router.navigate(['/login']);
+        }, 1000)
+      }
+      this.message = data.message;
+    });
   }
 
   // Validators

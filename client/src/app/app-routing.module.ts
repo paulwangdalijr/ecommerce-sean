@@ -7,7 +7,6 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { SocialComponent } from './components/social/social.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { AdminComponent } from './components/admin/admin.component';
 
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';

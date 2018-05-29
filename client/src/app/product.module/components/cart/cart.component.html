@@ -1,6 +1,6 @@
 <div class="container pt-5">
 	<div class="row">
-		<div class="col-4">
+		<div class="col-12 col-md-4">
 			<div class="card border-primary mb-3" style="max-width: 20rem;">
 			  <div class="card-header">
 			  	<h4>Total: <span class="float-right">${{total}}</span></h4>
@@ -15,7 +15,7 @@
 			  </div>
 			</div>
 		</div>
-		<div class="col-8">
+		<div class="col-12 col-md-8">
 			<div class="row" *ngFor="let product of cartService.cart">			
 				<div class="card border-secondary mb-3" style="width: 100%;">				  
 					  <!-- <div class="card-header">{{product.name}}</div> -->
@@ -26,8 +26,9 @@
 							  </div>
 						  	<div class="col">
 							    <h4 class="card-title">{{product.name}}<span class="float-right">${{product.price}}</span></h4>
-							    <p class="card-text">{{product.description}}</p>
-							    <button type="button" class="btn btn-primary btn-sm float-right">Remove</button>
+							    <div class="card-text">{{product.description}}
+									<button type="button" class="btn btn-primary btn-sm float-right" (click)="onClickRemove(product)">Remove</button>
+									</div>
 							</div>
 						</div>
 					  </div>

@@ -1,7 +1,7 @@
-<div class="container">
-
+<div class="container pt-4">
+  
   <!-- Custom Success/Error Message -->
-  <div class="show-hide-message">
+  <div class="show-hide-message text-center">
     <div [ngClass]="messageClass">
       {{ message }}
     </div>
@@ -41,7 +41,7 @@
     </div>
     <!-- Submit Button -->
     <input [disabled]="!form.valid || processing" class="btn btn-primary" type="submit" value="Login" />
-    <a href="/auth/facebook" ><button type="button" class="btn btn-info">Facebook</button></a>
+    <a href="/auth/facebook" ><button type="button" class="btn btn-info float-right">Facebook</button></a>
   </form>
   </div>
 </div>

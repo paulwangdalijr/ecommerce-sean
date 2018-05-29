@@ -5,9 +5,7 @@ const database = require('../config/database');
 
 const router = express.Router();
 
-/* GET users listing. */
 router.post('/login', function(req, res, next) {
-  // res.send('respond with a resource');
   if(!req.body.username){
     res.json({success: false, message: 'Username not provided!'});
   }else if(!req.body.password){
@@ -23,6 +21,44 @@ router.post('/login', function(req, res, next) {
     });
   }
 });
+
+router.post('/register', (req, res) => {
+    if( !req.body.email && req.body.email === '' ){
+        res.json({ success: false, message: 'You must provide an e-email' });
+    }else if( !req.body.password && req.body.password === '' ){
+        res.json({ success: false, message: 'You must provide an password' });
+    }else{
+        stmt = database.prepare("INSERT OR IGNORE INTO user VALUES (NULL,?,?,?)");
+        stmt.run(req.body.email.toLowerCase(),req.body.password,'user', 0, (err,row)=>{
+            if(err){
+				res.json({success: false, message: "User operation failed"});                
+            }else{
+				res.json({success: true, message: "Account created"});       
+            }
+        });      
+    }
+
+});
+
+router.get('/checkEmail/:email', (req,res) => {
+    if(!req.params.email){
+        res.json({success: false, message: 'Email not provided!'});
+    }else{
+        database.get("SELECT email FROM user WHERE email = ?", req.params.email, (err,row)=>{
+            if(err){
+                res.json({success: false, message: 'Error!'});    
+            }else{            
+                if(row){
+                    res.json({success: false, message: 'Email is already taken!'});     
+                }else{
+                    res.json({success: true, message: 'Email is available!'});                
+                }
+            }
+        });
+    }
+});
+
+
 
 router.use((req, res, next) => {
     const token = req.headers['x-auth-token'];

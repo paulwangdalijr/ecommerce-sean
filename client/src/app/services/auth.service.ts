@@ -43,6 +43,14 @@ export class AuthService {
     // return !this.jwtHelper.isTokenExpired(this.authToken);
     return !x;
   }
+
+  checkEmail(email){
+    return this.http.get(this.domain + "/auth/checkEmail/" + email);
+  }
+  registerUser(user){
+    return this.http.post(this.domain + '/authentication/register', user);        
+
+  }
   storeUserToken(token){
     localStorage.setItem('x-auth-token', token);
     this.authToken = token;
