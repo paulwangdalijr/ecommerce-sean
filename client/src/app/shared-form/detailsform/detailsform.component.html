@@ -1,30 +1,26 @@
 <div class="container">
 	<div class="row">  
-    <div class="col-3"></div>
-    <div class="col-6">
+    <div class="col-2"></div>
+    <div class="col-8">
       <form name="form" id="checkoutForm">	
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="detailsFormService.email" name="email">
+          <input disabled type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="detailsFormService.email" name="email">
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
           <label for="name">Full Name</label>
-          <input type="text" class="form-control" placeholder="Enter Name" name="name" [(ngModel)]="name">
+          <input type="text" class="form-control" placeholder="Enter Name" name="name" [(ngModel)]="detailsFormService.name" name="name">
         </div>
         <div class="form-group">
           <label for="address">Address</label>
-          <input type="text" class="form-control" placeholder="Enter Address">
+          <input type="text" class="form-control" placeholder="Enter Address" [(ngModel)]="detailsFormService.address" name="address">
         </div>
         <div class="form-group">
           <label for="mobile">Mobile Number</label>
-          <input type="text" class="form-control" placeholder="Enter Mobile Number">
+          <input type="text" class="form-control" placeholder="Enter Mobile Number" [(ngModel)]="detailsFormService.mobile" name="mobile">
         </div>
-        <div class="form-group">
-          <label for="mobile">Mobile Number</label>
-          <input type="text" class="form-control" placeholder="Enter Mobile Number">
-        </div>
-        <button type="button" class="btn btn-primary" (click)="onConfirmClick()">Confirm</button>
+        <button type="button" class="btn btn-primary" (click)="detailsFormService.onClick()">{{detailsFormService.operation}}</button>
         <button type="button" class="btn btn-secondary" routerLink="/cart">Back</button>
       </form>
     </div>

@@ -71,6 +71,15 @@ export class AuthService {
         return data;
       }));      
   }  
+  getProfileDetails(){
+    this.createAuthenticationHeaders();
+    return this.http.get(this.domain + "/auth/profileDetails", this.options);
+  }  
+
+  editProfile(user){
+    this.createAuthenticationHeaders();    
+    return this.http.put(this.domain + '/auth/profileUpdate', user, this.options ); 
+  }
 
   getAdminProfile(){
     this.createAuthenticationHeaders();

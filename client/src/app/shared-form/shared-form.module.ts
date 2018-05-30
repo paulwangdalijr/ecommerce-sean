@@ -18,4 +18,5 @@ import { DetailsformService } from './detailsform.service';
   providers: [DetailsformService]
 //   	, FormsModule, ReactiveFormsModule,]
 })
-export class SharedFormModule { }
+export class SharedFormModule {
+ }

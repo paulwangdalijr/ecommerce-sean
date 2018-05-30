@@ -1,3 +1,11 @@
-<!-- <input type="text" name="e" [(ngModel)]="email"> -->
-<app-detailsform></app-detailsform>
-<button (click)="click()">test</button>
+<div class="container pt-4"> 
+  
+<!-- Custom Success/Error Message -->
+    <div class="show-hide-message text-center">
+        <div [ngClass]="messageClass">
+        {{ message }}
+        </div>
+    </div>
+    <h6>Please update your profile, these details will be used during checkout.</h6>
+    <app-detailsform></app-detailsform>
+</div>

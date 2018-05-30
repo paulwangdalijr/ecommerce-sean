@@ -90,6 +90,49 @@ router.get('/profile', (req, res) => {
 	});
 });
 
+router.get('/profileDetails', (req, res) => {
+	database.get("SELECT a.email, a.type, b.name, b.address, b.mobile FROM user AS a LEFT JOIN userdetails AS b ON a.ID = b.ID WHERE a.ID = ?", [req.decoded.userId], (err,row)=>{
+		if(err){
+			res.json({ success: false, message: "Invalid user: " + err });
+		}else{
+            // console.log(row);
+            if(row.type !== 'admin'){
+                res.json({ success: true, user: {
+                    email: row.email, 
+                    name: row.name, 
+                    address: row.address, 
+                    mobile: row.mobile }
+                });
+            }else{
+                res.json({ success: false, message: "No profile for admin users" });
+            }
+		}
+	});
+});
+
+router.put('/profileUpdate', (req, res) => {
+    database.get("SELECT name FROM userdetails WHERE ID = ?", [req.decoded.userId], (err,row)=>{
+        if(err){            
+            res.json({success: false, message: "Operation failed"});            
+        }else{
+            if(row){
+                stmt = database.prepare("UPDATE userdetails SET name = ?, address = ?, mobile = ? WHERE ID = ?");                
+            }else{
+                stmt = database.prepare("INSERT INTO userdetails (name,address,mobile,ID) VALUES(?,?,?,?)");    
+            }
+            
+            stmt.run(req.body.name,req.body.address, req.body.mobile,req.decoded.userId, (err,row)=>{
+                if(err){
+                    res.json({success: false, message: "Operation failed"});
+                }else{
+                    res.json({success: true, message: "Profile updated"});
+                }
+            });
+        }
+    });
+    
+});
+
 router.get('/adminprofile', (req, res) => {
     database.get("SELECT type FROM user WHERE ID = ?", [req.decoded.userId], (err,row)=>{
         if(err){

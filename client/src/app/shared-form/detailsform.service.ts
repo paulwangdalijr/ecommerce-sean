@@ -5,5 +5,12 @@ import { Injectable } from '@angular/core';
 })
 export class DetailsformService {
   email;
+  name;
+  address;
+  mobile;
+  operation;
   constructor() { }
+
+  onClick(){
+  }
 }

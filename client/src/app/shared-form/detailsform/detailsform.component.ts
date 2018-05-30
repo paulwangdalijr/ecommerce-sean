@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DetailsformService } from '../detailsform.service';
 
 
@@ -9,25 +9,10 @@ import { DetailsformService } from '../detailsform.service';
 })
 // export class DetailsformComponent implements OnInit {
 export class DetailsformComponent implements OnInit {
-  // email = "asdasd";
-
-  // @Input('group') email;
-
-  // @Output() onEmailChange = new EventEmitter<string>();
-
   constructor(
     private detailsFormService: DetailsformService
     ) { }
 
   ngOnInit() {
   }
-
-  onConfirmClick(){
-  	console.log("click from shared module");
-    // console.log(this.email);
-  }
-  getEmail(){
-  	// return email;
-  }
-
 }

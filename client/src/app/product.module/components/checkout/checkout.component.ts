@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { DetailsformService } from '../../../shared-form/detailsform.service';
 
@@ -9,7 +9,9 @@ import { DetailsformService } from '../../../shared-form/detailsform.service';
 })
 export class CheckoutComponent implements OnInit {
   
-  // email;
+  @ViewChild('confirmationModal') confirmationModal:ElementRef;
+  @ViewChild('modalToggleBtn') modalToggleBtn:ElementRef;
+
   constructor(
     private authService: AuthService,
     private detailsFormService: DetailsformService
@@ -17,10 +19,25 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit() {
   	// email = "asd@asd.asd"
-    console.log(this.detailsFormService.email);
+    if(this.authService.loggedIn()){
+      this.detailsFormService.operation = "Confirm";
+      this.detailsFormService.onClick = ()=>{ this.click() };
+      this.authService.getProfileDetails().subscribe((profile:any) => {
+        if(profile.success){
+          this.detailsFormService.email = profile.user.email;
+          this.detailsFormService.name = profile.user.name;
+          this.detailsFormService.address = profile.user.address;
+          this.detailsFormService.mobile = profile.user.mobile;
+        } 
+      })
+    }
   }
 
-  onConfirmClick(){
-  	console.log("click from checkout module");
+  click(){
+    // $(this.confirmationModal.nativeElement).modal('show');
+    this.modalToggleBtn.nativeElement.click();
+  }
+  modalToggle(){
+
   }
 }

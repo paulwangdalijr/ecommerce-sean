@@ -10,7 +10,9 @@ import { DetailsformService } from '../../shared-form/detailsform.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit{
-
+  messageClass;
+  message;
+  input;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -19,13 +21,16 @@ export class ProfileComponent implements OnInit{
   }
   
   ngOnInit() {
-  	this.authService.getProfile().subscribe((profile:any) => {
+    this.detailsFormService.operation = "Update";
+    // this.detailsFormService.onClick = (x)=>{this.click(x)};
+    this.detailsFormService.onClick = ()=>{ this.click() };
+    // this.detailsFormService.onClick = this.click;
+  	this.authService.getProfileDetails().subscribe((profile:any) => {
       if(profile.success){
-        this.email = profile.user;
-        this.detailsFormService.email = profile.user;
-        console.log(this.detailsFormService.email);
-        this.router.navigate(['/checkout'])
-        // console.log(this.detailsFormService.email);
+        this.detailsFormService.email = profile.user.email;
+        this.detailsFormService.name = profile.user.name;
+        this.detailsFormService.address = profile.user.address;
+        this.detailsFormService.mobile = profile.user.mobile;
       }
       else{
         if(localStorage.getItem('type') !== 'admin'){
@@ -34,10 +39,20 @@ export class ProfileComponent implements OnInit{
         }else{
           this.router.navigate(['admin']);          
         }
-      }   
+      }  
     })
   }
   click(){
+    let user = { name: this.detailsFormService.name, address: this.detailsFormService.address, mobile: this.detailsFormService.mobile };
+    this.authService.editProfile(user).subscribe((data:any)=>{
+      if(data.success){
+        this.messageClass = "alert alert-success";
+        this.message = data.message;      
+      }else{
+        this.messageClass = "alert alert-danger";
+        this.message = data.message;
+      }
+    });
   }
 
 }
