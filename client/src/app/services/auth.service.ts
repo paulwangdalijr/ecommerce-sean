@@ -14,6 +14,7 @@ export class AuthService {
   jwtHelper;
   options;
   testing;
+  profile;
 
   domain = 'http://localhost:3000'; //dev
 
@@ -90,7 +91,18 @@ export class AuthService {
     //       return data.success;
     //     }));
   }
-
+  createOrder(items){
+    this.createAuthenticationHeaders();   
+    console.log(items); 
+    return this.http.post(this.domain + '/auth/createOrder', items, this.options);
+  }
+  createOrderNotLoggedIn(i_user, i_items){
+    let params = {
+      user: i_user,
+      items: i_items,
+    }
+    return this.http.post(this.domain + '/auth/createOrderNoAuth', params);
+  }
   createAuthenticationHeaders(){
     this.loadToken();
     this.options = {

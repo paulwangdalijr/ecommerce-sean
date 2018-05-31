@@ -21,26 +21,34 @@ export class ProfileComponent implements OnInit{
   }
   
   ngOnInit() {
+    this.detailsFormService.goBackLink = "";    
     this.detailsFormService.operation = "Update";
+    this.detailsFormService.emailFlag = true;
+    this.detailsFormService.detailsFlag = false;
     // this.detailsFormService.onClick = (x)=>{this.click(x)};
     this.detailsFormService.onClick = ()=>{ this.click() };
     // this.detailsFormService.onClick = this.click;
-  	this.authService.getProfileDetails().subscribe((profile:any) => {
-      if(profile.success){
-        this.detailsFormService.email = profile.user.email;
-        this.detailsFormService.name = profile.user.name;
-        this.detailsFormService.address = profile.user.address;
-        this.detailsFormService.mobile = profile.user.mobile;
-      }
-      else{
-        if(localStorage.getItem('type') !== 'admin'){
-          this.authService.logout();
-          this.router.navigate(['']);
-        }else{
-          this.router.navigate(['admin']);          
-        }
-      }  
-    })
+    
+  	// this.authService.getProfileDetails().subscribe((profile:any) => {
+    //   if(profile.success){
+    //     this.detailsFormService.email = this.authService.profile.user.email;
+    //     this.detailsFormService.name = this.authService.profile.profile.user.name;
+    //     this.detailsFormService.address = this.authService.profile.user.address;
+    //     this.detailsFormService.mobile = this.authService.profile.user.mobile;
+    //   }
+    //   else{
+    //     if(localStorage.getItem('type') !== 'admin'){
+    //       this.authService.logout();
+    //       this.router.navigate(['']);
+    //     }else{
+    //       this.router.navigate(['admin']);          
+    //     }
+    //   }  
+      this.detailsFormService.email = this.authService.profile.email;
+      this.detailsFormService.name = this.authService.profile.name;
+      this.detailsFormService.address = this.authService.profile.address;
+      this.detailsFormService.mobile = this.authService.profile.mobile;
+    // })
   }
   click(){
     let user = { name: this.detailsFormService.name, address: this.detailsFormService.address, mobile: this.detailsFormService.mobile };
@@ -52,6 +60,10 @@ export class ProfileComponent implements OnInit{
         this.messageClass = "alert alert-danger";
         this.message = data.message;
       }
+      setTimeout(()=>{
+        this.messageClass = "";
+        this.message = "";
+      }, 2000);
     });
   }
 

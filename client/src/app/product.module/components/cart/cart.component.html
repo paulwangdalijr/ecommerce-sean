@@ -1,4 +1,4 @@
-<div class="container pt-5">
+<div class="container pt-4">
 	<div class="row">
 		<div class="col-12 col-md-4">
 			<div class="card border-primary mb-3" style="max-width: 20rem;">
@@ -11,7 +11,7 @@
 			    <p class="card-text">Discount: <span class="float-right">N/A</span></p>
 			  </div>
 			  <div class="card-footer">
-			  	<button type="button" class="btn btn-primary" style="width: 100%" routerLink="/checkout">Checkout</button>
+			  	<button [disabled]="this.cartService.cart.length===0" type="button" class="btn btn-primary" style="width: 100%" routerLink="/checkout">Checkout</button>
 			  </div>
 			</div>
 		</div>

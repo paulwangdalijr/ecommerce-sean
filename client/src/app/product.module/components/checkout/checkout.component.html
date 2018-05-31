@@ -30,10 +30,33 @@
     </div>
   </div>
 </div> -->
-<div class="container pt-5"> 
-  <app-detailsform></app-detailsform>
+<div class="container pt-4"> 
+  <div *ngIf="!confirmed" id="formDetails">
+    <p class="text-primary text-center">Please confirm your details.</p>
+    
+    <app-detailsform></app-detailsform>
+    <button hidden data-toggle="modal" data-target="#confirmation" #modalToggleBtn></button>
+    
+  </div>
+  <div *ngIf="confirmed" class="text-center">
+    <div *ngIf="processing">
+      <h4>Creating order...</h4>
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+      </div>
+    </div>
+    <div *ngIf="!processing && !error">    
+      <h4>Order number: {{orderNumber}}</h4>
+      <h6>Thanks, {{detailsFormService.name}}.</h6>
+      <h6>Please expect your order to be delivered at: {{detailsFormService.address}}</h6>
+      <h6>Go to <a routerLink="" class="text-info">Home</a></h6>
+    </div>
+    <div *ngIf="!processing && error">
+      <h2>There was an error processing your order. Kindly go back to cart page.</h2>
+      <h6>Go to <a routerLink="/cart" class="text-info">Cart</a></h6>      
+    </div>
+  </div>
 </div>
-<button hidden data-toggle="modal" data-target="#confirmation" #modalToggleBtn></button>
 <div #confirmationModal class="modal" id="confirmation">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -44,10 +67,10 @@
           </button>
         </div>
         <div class="modal-body">
-          <p>Please confirm cart details and checkout form</p>
+          <p>Order is about to be created, please confirm all cart and checkout details.</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Create Order</button>
+          <button type="button" class="btn btn-primary" (click)="onCreateOrderClick()">Create Order</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>

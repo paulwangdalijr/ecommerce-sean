@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
+  loggingOut;
   constructor(
   	public authService: AuthService,
   	private router: Router
@@ -18,8 +18,12 @@ export class NavbarComponent implements OnInit {
   }
   
   onLogoutClick(){
-  	this.authService.logout();
-  	this.router.navigate(['']);
+    this.loggingOut = true;
+    setTimeout(()=>{
+      this.authService.logout();
+      this.router.navigate(['']);
+      this.loggingOut = false;
+    },2000);
   }
 
 }

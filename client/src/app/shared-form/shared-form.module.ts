@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { DetailsformComponent } from './detailsform/detailsform.component';
 import { DetailsformService } from './detailsform.service';
 
@@ -10,6 +11,7 @@ import { DetailsformService } from './detailsform.service';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule
     // CheckoutComponent
   ],
   declarations: [DetailsformComponent],

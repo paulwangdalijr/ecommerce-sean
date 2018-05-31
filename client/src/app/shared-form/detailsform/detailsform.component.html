@@ -1,28 +1,38 @@
 <div class="container">
 	<div class="row">  
-    <div class="col-2"></div>
-    <div class="col-8">
+    <div class="col-0 col-md-2"></div>
+    <div class="col-12 col-md-8">
       <form name="form" id="checkoutForm">	
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
-          <input disabled type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="detailsFormService.email" name="email">
+          <input [disabled]="detailsFormService.emailFlag" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="*Enter email" [(ngModel)]="detailsFormService.email" name="email">
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
           <label for="name">Full Name</label>
-          <input type="text" class="form-control" placeholder="Enter Name" name="name" [(ngModel)]="detailsFormService.name" name="name">
+          <input [disabled]="detailsFormService.detailsFlag" type="text" class="form-control" placeholder="*Enter Name" name="name" [(ngModel)]="detailsFormService.name" name="name">
         </div>
         <div class="form-group">
           <label for="address">Address</label>
-          <input type="text" class="form-control" placeholder="Enter Address" [(ngModel)]="detailsFormService.address" name="address">
+          <input [disabled]="detailsFormService.detailsFlag" type="text" class="form-control" placeholder="*Enter Address" [(ngModel)]="detailsFormService.address" name="address">
         </div>
         <div class="form-group">
           <label for="mobile">Mobile Number</label>
-          <input type="text" class="form-control" placeholder="Enter Mobile Number" [(ngModel)]="detailsFormService.mobile" name="mobile">
+          <input [disabled]="detailsFormService.detailsFlag" type="text" class="form-control" placeholder="*Enter Mobile Number" [(ngModel)]="detailsFormService.mobile" name="mobile">
         </div>
-        <button type="button" class="btn btn-primary" (click)="detailsFormService.onClick()">{{detailsFormService.operation}}</button>
-        <button type="button" class="btn btn-secondary" routerLink="/cart">Back</button>
+        <button [disabled]="!detailsFormService.email ||
+        !detailsFormService.name ||
+        !detailsFormService.address ||
+        !detailsFormService.mobile"         
+        type="button" class="btn btn-primary" (click)="detailsFormService.onClick()">{{detailsFormService.operation}}</button>
+        <a routerLink="{{detailsFormService.goBackLink}}"><button type="button" class="btn btn-secondary">
+          Back
+        </button></a>
       </form>
     </div>
   </div>
 </div>
+<div class="footer-info">
+		<br><br>
+		<p class="text-right col-form-label-sm">This is a simple form, no validation included except mandatory fields :(</p>
+	</div>

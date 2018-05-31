@@ -23,7 +23,7 @@
           <a *ngIf="!authService.loggedIn()" class="dropdown-item" routerLink="signup">Sign Up</a>
           <a *ngIf="authService.loggedIn() && !authService.isAdmin() " class="dropdown-item" routerLink="profile">Profile</a>
           <a *ngIf="authService.isAdmin()" class="dropdown-item" routerLink="admin">Dashboard</a>
-          <a *ngIf="authService.loggedIn()" (click)="onLogoutClick()" class="dropdown-item" routerLink="logout">Logout</a>
+          <a *ngIf="authService.loggedIn()" (click)="onLogoutClick()" class="dropdown-item">Logout</a>
         </div>
       </div>
       <input class="form-control mr-sm-2" type="text" placeholder="Search">
@@ -31,3 +31,10 @@
     </form>
   </div>
 </nav>
+
+<div *ngIf="loggingOut" class="text-center p-2">
+  <h5>Logging out...</h5>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+  </div>
+</div>

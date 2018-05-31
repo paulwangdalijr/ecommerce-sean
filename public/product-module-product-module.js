@@ -10394,7 +10394,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5\">\n\t<div class=\"row\">\n\t\t<div class=\"col-4\">\n\t\t\t<div class=\"card border-primary mb-3\" style=\"max-width: 20rem;\">\n\t\t\t  <div class=\"card-header\">\n\t\t\t  \t<h4>Total: <span class=\"float-right\">${{total}}</span></h4>\n\t\t\t  </div>\n\t\t\t  <div class=\"card-body\">\n\t\t\t    <!-- <h4 class=\"card-title\">Avail promo!</h4> -->\n\t\t\t    <p class=\"card-text\">Delivery fee: <span class=\"float-right\">FREE</span></p>\n\t\t\t    <p class=\"card-text\">Discount: <span class=\"float-right\">N/A</span></p>\n\t\t\t  </div>\n\t\t\t  <div class=\"card-footer\">\n\t\t\t  \t<button type=\"button\" class=\"btn btn-primary\" style=\"width: 100%\">Checkout</button>\n\t\t\t  </div>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"col-8\">\n\t\t\t<div class=\"row\" *ngFor=\"let product of cartService.cart\">\t\t\t\n\t\t\t\t<div class=\"card border-secondary mb-3\" style=\"width: 100%;\">\t\t\t\t  \n\t\t\t\t\t  <!-- <div class=\"card-header\">{{product.name}}</div> -->\n\t\t\t\t\t  <div class=\"card-body\">\n\t\t\t\t\t  \t<div class=\"row\">\n\t\t\t\t\t\t  \t<div class=\"col-2\">\n\t\t\t\t\t\t\t  \t<img alt=\"test\">\n\t\t\t\t\t\t\t  </div>\n\t\t\t\t\t\t  \t<div class=\"col\">\n\t\t\t\t\t\t\t    <h4 class=\"card-title\">{{product.name}}<span class=\"float-right\">${{product.price}}</span></h4>\n\t\t\t\t\t\t\t    <p class=\"card-text\">{{product.description}}</p>\n\t\t\t\t\t\t\t    <button type=\"button\" class=\"btn btn-primary btn-sm float-right\">Remove</button>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t  </div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n\n"
+module.exports = "<div class=\"container pt-4\">\n\t<div class=\"row\">\n\t\t<div class=\"col-12 col-md-4\">\n\t\t\t<div class=\"card border-primary mb-3\" style=\"max-width: 20rem;\">\n\t\t\t  <div class=\"card-header\">\n\t\t\t  \t<h4>Total: <span class=\"float-right\">${{total}}</span></h4>\n\t\t\t  </div>\n\t\t\t  <div class=\"card-body\">\n\t\t\t    <!-- <h4 class=\"card-title\">Avail promo!</h4> -->\n\t\t\t    <p class=\"card-text\">Delivery fee: <span class=\"float-right\">FREE</span></p>\n\t\t\t    <p class=\"card-text\">Discount: <span class=\"float-right\">N/A</span></p>\n\t\t\t  </div>\n\t\t\t  <div class=\"card-footer\">\n\t\t\t  \t<button [disabled]=\"this.cartService.cart.length===0\" type=\"button\" class=\"btn btn-primary\" style=\"width: 100%\" routerLink=\"/checkout\">Checkout</button>\n\t\t\t  </div>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"col-12 col-md-8\">\n\t\t\t<div class=\"row\" *ngFor=\"let product of cartService.cart\">\t\t\t\n\t\t\t\t<div class=\"card border-secondary mb-3\" style=\"width: 100%;\">\t\t\t\t  \n\t\t\t\t\t  <!-- <div class=\"card-header\">{{product.name}}</div> -->\n\t\t\t\t\t  <div class=\"card-body\">\n\t\t\t\t\t  \t<div class=\"row\">\n\t\t\t\t\t\t  \t<div class=\"col-2\">\n\t\t\t\t\t\t\t  \t<img alt=\"test\">\n\t\t\t\t\t\t\t  </div>\n\t\t\t\t\t\t  \t<div class=\"col\">\n\t\t\t\t\t\t\t    <h4 class=\"card-title\">{{product.name}}<span class=\"float-right\">${{product.price}}</span></h4>\n\t\t\t\t\t\t\t    <div class=\"card-text\">{{product.description}}\n\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary btn-sm float-right\" (click)=\"onClickRemove(product)\">Remove</button>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t  </div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n\n"
 
 /***/ }),
 
@@ -10433,7 +10433,6 @@ var CartComponent = /** @class */ (function () {
         this.total = 0;
     }
     CartComponent.prototype.ngOnInit = function () {
-        var _this = this;
         // if(this.authService.loggedIn()){
         //   this.cartService.cart = JSON.parse(localStorage.getItem('cart')) || [];
         //   console.log("local")
@@ -10441,12 +10440,19 @@ var CartComponent = /** @class */ (function () {
         //   this.cartService.cart = JSON.parse(sessionStorage.getItem('cart')) || [];
         //   console.log("session")
         // }
+        var _this = this;
         this.total = 0;
         this.cartService.getCart();
         this.cartService.cart.forEach(function (product) {
             _this.total += product.price;
         });
         console.log(this.cartService.cart);
+    };
+    CartComponent.prototype.onClickRemove = function (product) {
+        this.cartService.remoteFromCart(product.id);
+        this.total -= product.price;
+    };
+    CartComponent.prototype.checkout = function () {
     };
     CartComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -10483,7 +10489,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  checkout works!\n</p>\n"
+module.exports = "<!-- <div class=\"container\">\n\t<div class=\"row\">  \n    <div class=\"col-3\"></div>\n    <div class=\"col-6\">\n      <form name=\"form\" id=\"checkoutForm\">\t\n        <div class=\"form-group\">\n          <label for=\"exampleInputEmail1\">Email address</label>\n          <input type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Enter email\">\n          <small id=\"emailHelp\" class=\"form-text text-muted\">We'll never share your email with anyone else.</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"name\">Full Name</label>\n          <input type=\"text\" class=\"form-control\" placeholder=\"Enter Name\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"address\">Address</label>\n          <input type=\"text\" class=\"form-control\" placeholder=\"Enter Address\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"mobile\">Mobile Number</label>\n          <input type=\"text\" class=\"form-control\" placeholder=\"Enter Mobile Number\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"mobile\">Mobile Number</label>\n          <input type=\"text\" class=\"form-control\" placeholder=\"Enter Mobile Number\">\n        </div>\n        <button type=\"button\" class=\"btn btn-primary\">Confirm</button>\n        <button type=\"button\" class=\"btn btn-secondary\" routerLink=\"/cart\">Back</button>\n      </form>\n    </div>\n  </div>\n</div> -->\n<div class=\"container pt-4\"> \n  <div *ngIf=\"!confirmed\" id=\"formDetails\">\n    <p class=\"text-primary text-center\">Please confirm your details.</p>\n    \n    <app-detailsform></app-detailsform>\n    <button hidden data-toggle=\"modal\" data-target=\"#confirmation\" #modalToggleBtn></button>\n    \n  </div>\n  <div *ngIf=\"confirmed\" class=\"text-center\">\n    <div *ngIf=\"processing\">\n      <h4>Creating order...</h4>\n      <div class=\"progress\">\n        <div class=\"progress-bar progress-bar-striped progress-bar-animated bg-success\" role=\"progressbar\" aria-valuenow=\"75\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 100%\"></div>\n      </div>\n    </div>\n    <div *ngIf=\"!processing && !error\">    \n      <h4>Order number: {{orderNumber}}</h4>\n      <h6>Thanks, {{detailsFormService.name}}.</h6>\n      <h6>Please expect your order to be delivered at: {{detailsFormService.address}}</h6>\n      <h6>Go to <a routerLink=\"\" class=\"text-info\">Home</a></h6>\n    </div>\n    <div *ngIf=\"!processing && error\">\n      <h2>There was an error processing your order. Kindly go back to cart page.</h2>\n      <h6>Go to <a routerLink=\"/cart\" class=\"text-info\">Cart</a></h6>      \n    </div>\n  </div>\n</div>\n<div #confirmationModal class=\"modal\" id=\"confirmation\">\n    <div class=\"modal-dialog\" role=\"document\">\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <h5 class=\"modal-title\">Confirm details</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n          <p>Order is about to be created, please confirm all cart and checkout details.</p>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-primary\" (click)=\"onCreateOrderClick()\">Create Order</button>\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        </div>\n      </div>\n    </div>\n  </div>\n"
 
 /***/ }),
 
@@ -10498,6 +10504,10 @@ module.exports = "<p>\n  checkout works!\n</p>\n"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CheckoutComponent", function() { return CheckoutComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _shared_form_detailsform_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../shared-form/detailsform.service */ "./src/app/shared-form/detailsform.service.ts");
+/* harmony import */ var _services_cart_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/cart.service */ "./src/app/product.module/services/cart.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10508,18 +10518,106 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+
 var CheckoutComponent = /** @class */ (function () {
-    function CheckoutComponent() {
+    function CheckoutComponent(authService, cartService, detailsFormService, router) {
+        this.authService = authService;
+        this.cartService = cartService;
+        this.detailsFormService = detailsFormService;
+        this.router = router;
     }
     CheckoutComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.cartService.getCart();
+        if (this.cartService.cart.length !== 0) {
+            this.confirmed = false;
+            this.processing = false;
+            this.detailsFormService.goBackLink = "/cart";
+            this.detailsFormService.operation = "Confirm";
+            this.detailsFormService.clearFields();
+            this.detailsFormService.onClick = function () { _this.click(); };
+            if (this.authService.loggedIn()) {
+                this.authService.getProfileDetails().subscribe(function (profile) {
+                    if (profile.success) {
+                        _this.detailsFormService.email = profile.user.email;
+                        _this.detailsFormService.name = profile.user.name;
+                        _this.detailsFormService.address = profile.user.address;
+                        _this.detailsFormService.mobile = profile.user.mobile;
+                        _this.detailsFormService.emailFlag = true;
+                        _this.detailsFormService.detailsFlag = true;
+                    }
+                });
+            }
+        }
+        else {
+            this.router.navigate(['/cart']);
+        }
     };
+    CheckoutComponent.prototype.click = function () {
+        this.modalToggleBtn.nativeElement.click();
+    };
+    CheckoutComponent.prototype.modalToggle = function () {
+    };
+    CheckoutComponent.prototype.onCreateOrderClick = function () {
+        var _this = this;
+        this.modalToggleBtn.nativeElement.click();
+        this.confirmed = true;
+        this.processing = true;
+        setTimeout(function () {
+            // this.processing = false;
+            _this.processing = false;
+        }, 2000);
+        this.cartService.getCart();
+        if (this.authService.loggedIn()) {
+            this.authService.createOrder(this.cartService.cart).subscribe(function (data) {
+                if (data.success) {
+                    _this.orderNumber = data.order;
+                    _this.cartService.clearCart();
+                }
+                else {
+                    _this.error = true;
+                }
+            });
+        }
+        else {
+            var user = {
+                email: this.detailsFormService.email,
+                name: this.detailsFormService.name,
+                address: this.detailsFormService.address,
+                mobile: this.detailsFormService.mobile
+            };
+            this.authService.createOrderNotLoggedIn(user, this.cartService.cart).subscribe(function (data) {
+                if (data.success) {
+                    _this.orderNumber = data.order;
+                    _this.cartService.clearCart();
+                }
+                else {
+                    _this.error = true;
+                }
+            });
+        }
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('confirmationModal'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], CheckoutComponent.prototype, "confirmationModal", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('modalToggleBtn'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], CheckoutComponent.prototype, "modalToggleBtn", void 0);
     CheckoutComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-checkout',
             template: __webpack_require__(/*! ./checkout.component.html */ "./src/app/product.module/components/checkout/checkout.component.html"),
             styles: [__webpack_require__(/*! ./checkout.component.css */ "./src/app/product.module/components/checkout/checkout.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"],
+            _services_cart_service__WEBPACK_IMPORTED_MODULE_3__["CartService"],
+            _shared_form_detailsform_service__WEBPACK_IMPORTED_MODULE_2__["DetailsformService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
     ], CheckoutComponent);
     return CheckoutComponent;
 }());
@@ -10598,7 +10696,7 @@ var PaymentComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".list-item-3 {\n\tmargin-right: 20px;\n}\n.list-item-4 {\n\tmargin-right: 0px\n}\n.submenu{\n\tpadding-bottom: 10px;\n}\n.card-body img{\n\theight: 130px;\n}\n#properties-list-group{\n\twidth: 100%;\n}\n.fas.fa-shopping-cart{\n    font-size: 30px;\n    margin-left: 15px;\n}"
+module.exports = ".list-item-3 {\n\tmargin-right: 20px;\n}\n.list-item-4 {\n\tmargin-right: 0px\n}\n.submenu{\n\tpadding-bottom: 10px;\n}\n.card-body {\n\theight: 22em;\n}\n.card-subtitle{\n\toverflow: hidden;\n  text-overflow: ellipsis;\n\t\n}\n#properties-list-group{\n\twidth: 100%;\n}\n.fas.fa-shopping-cart{\n    font-size: 30px;\n    margin-left: 15px;\n}\nimg {\n    height: auto;\n    max-width: 100%;\n}\n.add-to-cart{\n\theight: auto;\n\tmax-width: 100%;\n\tfont-size: 80%;\n}\n.card-col{\n\tmin-width: 15em;\n}\n\n"
 
 /***/ }),
 
@@ -10609,7 +10707,7 @@ module.exports = ".list-item-3 {\n\tmargin-right: 20px;\n}\n.list-item-4 {\n\tma
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"float-right p-2\">\n    <a routerLink=\"cart\">\n      <i class=\"fas fa-shopping-cart\"></i>\n      <span class=\"badge badge-primary badge-pill\">{{cartService.cart.length}}</span>\n    </a>\n</div>\n\n<ol class=\"breadcrumb\">\n  <li class=\"breadcrumb-item\" (click)=\"x='Home'\">Home</li>\n  <li class=\"breadcrumb-item\">Library</li>\n  <li class=\"breadcrumb-item\" (click)=\"print(x)\">Data</li>\n</ol>\n\n<div class=\"row\">\n  <div class=\"form-group col-3\">\n    <h4>Categories</h4>\n    <div *ngFor=\"let category of categories\" class=\"custom-control custom-checkbox\">\n      <input type=\"checkbox\" class=\"custom-control-input\" id=\"{{category.ID}}\" (change)=\"onChangeCheckBox($event.target.checked, category)\">\n      <label class=\"custom-control-label\" for=\"{{category.ID}}\">{{category.name}}</label>\n    </div>\n  </div>\n  <div class=\"col-9\">\n    <div class=\"row  d-inline-block\">\n      <div  *ngFor=\"let category of selectedCategories\" class=\"pr-2 d-inline-block\">\n        <span class=\"badge badge-dark\">{{category.name}}</span>\n      </div>   \n      <!-- <button (click)=\"itemMargin='col-3'\">3</button>\n      <button (click)=\"itemMargin='col-4'\">4</button> -->\n    </div>\n    <div class=\"row\">\n        <div [ngClass]=\"itemMargin\" class=\"col-4\" *ngFor=\"let product of products\">           \n          <div *ngIf=\"selectedCategories.length === 0 || product.show\" \n            [ngClass]=\"cardWidth\" class=\"card\">\n            <a href='#'class=\"card-link\" data-toggle=\"modal\" data-target=\"#modalProduct\" (click)=\"onProductSelect(product)\">\n              <div class=\"card-body\">     \n                  <img alt='test' src=\"http://www.paperairplanebehavioral.com/wp-content/uploads/2015/07/Airplane.png\"/>\n                <h4 class=\"card-title\">{{product.name}}</h4>\n                <h6 class=\"card-subtitle mb-2 text-muted\">{{product.description}}</h6>\n                <p class=\"card-text\"></p>\n              </div>\n            </a>   \n            <div class=\"card-footer\">\n              <!-- <button class='add-to-cart' (click)=\"productService.addToCart()\">Add to cart</button>\n              <a href=\"#\" class=\"card-link\">Another link</a> -->\n              <div class=\"row\">\n                <div class=\"col text-center\">\n                  <button type=\"button\" class=\"btn btn-primary add-to-cart\" (click)=\"addToCart(product, 1)\">Add to cart</button>\n                </div>\n                <!-- <div class=\"col\">\n                  <label class=\"col-form-label \" for=\"quantity\">Qty</label>\n                  <input type=\"number\" [(ngModel)]=\"product.orderQuantity\" name=\"quantity\" class=\"form-control\">\n                </div> -->\n              </div>\n              <!-- <button type=\"button\" class=\"btn btn-primary dropdown-toggle btn-sm\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"></button>               -->\n\n            </div>\n          </div>      \n        </div>\n    </div>\n  </div>\n  <div class=\"modal\" id=\"modalProduct\">\n    <div class=\"modal-dialog\" role=\"document\">\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <h5 class=\"modal-title\">{{SelectedProduct.name}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n          <div class=\"container\">\n            <div class=\"row\">\n              <div class=\"col-sm\">\n                <img alt='test' src=\"http://www.paperairplanebehavioral.com/wp-content/uploads/2015/07/Airplane.png\"/>\n              </div>\n              <div class=\"col-sm\">\n                <div class=\"row pb-3\">\n                    <span class=\"text-primary\">{{SelectedProduct.description}}</span>\n                </div>\n                <div class=\"row\">\n                    <span class=\"text-primary\">Available: </span>{{SelectedProduct.quantity}} pcs\n                </div>\n                <div class=\"row pb-3\">\n                    <span class=\"text-primary\">Price: </span>${{SelectedProduct.price}}\n                </div>\n                <div class=\"row\" *ngFor=\"let prop of SelectedProperty\">\n                  <span class=\"text-primary\">{{prop}}: </span> \n                  {{SelectedProduct.property[prop]}}\n                  <!-- <div id=\"properties-list-group\" class=\"list-group\">\n                      <span class=\"list-group-item list-group-item-action active\">\n                        Properties\n                      </span>\n                  \n                      <span *ngFor=\"let prop of SelectedProperty\" class=\"list-group-item list-group-item-action\"><strong>{{prop}}: </strong>{{SelectedProduct.property[prop]}}\n                      </span>\n                  </div> -->\n                  \n                  <!-- <ul>                \n                    <li *ngFor=\"let prop of SelectedProperty\"><strong>{{prop}}: </strong>{{SelectedProduct.property[prop]}}</li>\n                  </ul> -->\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-primar add-to-cart\" data-dismiss=\"modal\" (click)=\"addToCart(SelectedProduct, 1)\">Add to cart</button>\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n\n</div>\n"
+module.exports = "<div class=\"float-right p-2 pt-3\">\n    <a routerLink=\"cart\">\n      <i class=\"fas fa-shopping-cart\"></i>\n      <span class=\"badge badge-primary badge-pill\">{{cartService.cart.length}}</span>\n    </a>\n</div>\n<div class=\"container pt-4\">\n  <div class=\"row\">\n    <div class=\"form-group col-6 col-md-3\">\n      <h4>Categories</h4>\n      <div *ngFor=\"let category of categories\" class=\"custom-control custom-checkbox\">\n        <input type=\"checkbox\" class=\"custom-control-input\" id=\"{{category.ID}}\" (change)=\"onChangeCheckBox($event.target.checked, category)\">\n        <label class=\"custom-control-label\" for=\"{{category.ID}}\">{{category.name}}</label>\n      </div>\n    </div>\n    <div class=\"col-6 col-md-9\">\n      <div class=\"row d-inline-block pb-3\" style=\"min-height: 2.2em\">\n        <div  *ngFor=\"let category of selectedCategories\" class=\"pr-2 d-inline-block\">\n          <span class=\"badge badge-dark  d-none d-sm-block d-none d-md-block\">{{category.name}}</span>\n        </div>   \n        <!-- <button (click)=\"itemMargin='col-3'\">3</button>\n        <button (click)=\"itemMargin='col-4'\">4</button> -->\n\n        <!-- *ngIf=\"selectedCategories.length === 0 || product.show\" -->\n        <!-- col-4 pb-4  -->\n      </div>\n      <div class=\"row\">\n        <div [ngClass]=\"itemMargin\" class=\"col-12 col-md-4 pb-4 card-col\" *ngFor=\"let product of filterProducts()\">           \n          <div \n            [ngClass]=\"cardWidth\" class=\"card\">\n            <a href='#'class=\"card-link\" data-toggle=\"modal\" data-target=\"#modalProduct\" (click)=\"onProductSelect(product)\">\n              <div class=\"card-body\">     \n                  <img  #img alt='test' src=\"http://www.paperairplanebehavioral.com/wp-content/uploads/2015/07/Airplane.png\"/>\n                <h4 class=\"card-title\">{{product.name}}</h4>\n                <h6 class=\"card-subtitle mb-2 text-muted\">{{product.description}}</h6>\n                <p class=\"card-text\"></p>\n              </div>\n            </a>   \n            <div class=\"card-footer\">\n              <!-- <button class='add-to-cart' (click)=\"productService.addToCart()\">Add to cart</button>\n              <a href=\"#\" class=\"card-link\">Another link</a> -->\n              <div class=\"row\">\n                <div class=\"col text-center\">\n                  <button type=\"button\" class=\"btn btn-primary add-to-cart\" (click)=\"addToCart(img,product, 1)\">Add to cart</button>\n                </div>\n                <!-- <div class=\"col\">\n                  <label class=\"col-form-label \" for=\"quantity\">Qty</label>\n                  <input type=\"number\" [(ngModel)]=\"product.orderQuantity\" name=\"quantity\" class=\"form-control\">\n                </div> -->\n                </div>\n              <!-- <button type=\"button\" class=\"btn btn-primary dropdown-toggle btn-sm\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"></button>               -->\n\n              </div>\n            </div>      \n          </div>\n      </div>\n    </div>\n    <div class=\"modal\" id=\"modalProduct\">\n      <div class=\"modal-dialog\" role=\"document\">\n        <div class=\"modal-content\">\n          <div class=\"modal-header\">\n            <h5 class=\"modal-title\">{{SelectedProduct.name}}</h5>\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n              <span aria-hidden=\"true\">&times;</span>\n            </button>\n          </div>\n          <div class=\"modal-body\">\n            <div class=\"container\">\n              <div class=\"row\">\n                <div class=\"col-sm\">\n                  <img alt='test' #img src=\"http://www.paperairplanebehavioral.com/wp-content/uploads/2015/07/Airplane.png\"/>\n                </div>\n                <div class=\"col-sm\">\n                  <div class=\"row pb-3\">\n                      <span class=\"text-primary\">{{SelectedProduct.description}}</span>\n                  </div>\n                  <div class=\"row\">\n                      <span class=\"text-primary\">Available: </span>{{SelectedProduct.quantity}} pcs\n                  </div>\n                  <div class=\"row pb-3\">\n                      <span class=\"text-primary\">Price: </span>${{SelectedProduct.price}}\n                  </div>\n                  <div class=\"row\" *ngFor=\"let prop of SelectedProperty\">\n                    <span class=\"text-primary\">{{prop}}: </span> \n                    {{SelectedProduct.property[prop]}}\n                    <!-- <div id=\"properties-list-group\" class=\"list-group\">\n                        <span class=\"list-group-item list-group-item-action active\">\n                          Properties\n                        </span>\n                    \n                        <span *ngFor=\"let prop of SelectedProperty\" class=\"list-group-item list-group-item-action\"><strong>{{prop}}: </strong>{{SelectedProduct.property[prop]}}\n                        </span>\n                    </div> -->\n                    \n                    <!-- <ul>                \n                      <li *ngFor=\"let prop of SelectedProperty\"><strong>{{prop}}: </strong>{{SelectedProduct.property[prop]}}</li>\n                    </ul> -->\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-primar add-to-cart\" data-dismiss=\"modal\" (click)=\"addToCart(img, SelectedProduct, 1)\">Add to cart</button>\n            <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n\n</div>\n"
 
 /***/ }),
 
@@ -10654,8 +10752,42 @@ var ProductListComponent = /** @class */ (function () {
         this.SelectedProduct = new _models_product__WEBPACK_IMPORTED_MODULE_3__["Product"]();
         this.SelectedProperty = [];
     }
-    ProductListComponent.prototype.addToCart = function (product, qty) {
+    ProductListComponent.prototype.addToCart = function (img, product, qty) {
         this.cartService.addToCart(product, qty);
+        var cart = jquery__WEBPACK_IMPORTED_MODULE_5__('.fa-shopping-cart');
+        var imgtodrag = jquery__WEBPACK_IMPORTED_MODULE_5__(img);
+        if (imgtodrag) {
+            var imgclone = imgtodrag.clone()
+                .offset({
+                top: imgtodrag.offset().top,
+                left: imgtodrag.offset().left
+            })
+                .css({
+                'opacity': '0.5',
+                'position': 'absolute',
+                'height': '150px',
+                'width': '150px',
+                'z-index': '100'
+            })
+                .appendTo(jquery__WEBPACK_IMPORTED_MODULE_5__('body'))
+                .animate({
+                'top': cart.offset().top + 10,
+                'left': cart.offset().left + 10,
+                'width': 75,
+                'height': 75
+            }, 1000);
+            // setTimeout(function () {
+            //     cart.effect("shake", {
+            //         times: 2
+            //     }, 200);
+            // }, 1500);
+            imgclone.animate({
+                'width': 0,
+                'height': 0
+            }, function () {
+                jquery__WEBPACK_IMPORTED_MODULE_5__(this).detach();
+            });
+        }
     };
     ProductListComponent.prototype.getAllProducts = function () {
         var _this = this;
@@ -10711,7 +10843,7 @@ var ProductListComponent = /** @class */ (function () {
             });
             product.show = flag;
         });
-        this.updateCartFunction();
+        // this.updateCartFunction();
     };
     ProductListComponent.prototype.filterByCategory = function (categories) {
         var _this = this;
@@ -10725,6 +10857,23 @@ var ProductListComponent = /** @class */ (function () {
             }
         });
     };
+    ProductListComponent.prototype.filterProducts = function () {
+        var _this = this;
+        return this.products.filter(function (x) {
+            if (_this.selectedCategories.length === 0) {
+                return true;
+            }
+            else {
+                return x.show;
+            }
+        });
+        // console.log("ASDASD")
+        // if(this.selectedCategories.length === 0 || this.products.filter(x => x.show)){
+        //   return true;
+        // }else{
+        //   return false;
+        // }
+    };
     ProductListComponent.prototype.ngOnInit = function () {
         this.getAllProducts();
         this.itemMargin = 'col-4';
@@ -10735,48 +10884,7 @@ var ProductListComponent = /** @class */ (function () {
         else {
             this.cartService.cart = JSON.parse(sessionStorage.getItem('cart')) || [];
         }
-        this.updateCartFunction();
-    };
-    ProductListComponent.prototype.updateCartFunction = function () {
-        jquery__WEBPACK_IMPORTED_MODULE_5__(document).ready(function () {
-            jquery__WEBPACK_IMPORTED_MODULE_5__('.add-to-cart').on('click', function () {
-                var cart = jquery__WEBPACK_IMPORTED_MODULE_5__('.fa-shopping-cart');
-                var imgtodrag = jquery__WEBPACK_IMPORTED_MODULE_5__(this).parent().parent().parent().parent().find("img").eq(0);
-                console.log(imgtodrag);
-                if (imgtodrag) {
-                    var imgclone = imgtodrag.clone()
-                        .offset({
-                        top: imgtodrag.offset().top,
-                        left: imgtodrag.offset().left
-                    })
-                        .css({
-                        'opacity': '0.5',
-                        'position': 'absolute',
-                        'height': '150px',
-                        'width': '150px',
-                        'z-index': '100'
-                    })
-                        .appendTo(jquery__WEBPACK_IMPORTED_MODULE_5__('body'))
-                        .animate({
-                        'top': cart.offset().top + 10,
-                        'left': cart.offset().left + 10,
-                        'width': 75,
-                        'height': 75
-                    }, 1000);
-                    // setTimeout(function () {
-                    //     cart.effect("shake", {
-                    //         times: 2
-                    //     }, 200);
-                    // }, 1500);
-                    imgclone.animate({
-                        'width': 0,
-                        'height': 0
-                    }, function () {
-                        jquery__WEBPACK_IMPORTED_MODULE_5__(this).detach();
-                    });
-                }
-            });
-        });
+        // this.updateCartFunction();  
     };
     ProductListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -10810,7 +10918,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_product_list_product_list_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/product-list/product-list.component */ "./src/app/product.module/components/product-list/product-list.component.ts");
 /* harmony import */ var _product_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./product.component */ "./src/app/product.module/product.component.ts");
 /* harmony import */ var _components_cart_cart_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/cart/cart.component */ "./src/app/product.module/components/cart/cart.component.ts");
-/* harmony import */ var _components_payment_payment_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/payment/payment.component */ "./src/app/product.module/components/payment/payment.component.ts");
+/* harmony import */ var _components_checkout_checkout_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/checkout/checkout.component */ "./src/app/product.module/components/checkout/checkout.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10844,8 +10952,8 @@ var productRoutes = [
         component: _components_cart_cart_component__WEBPACK_IMPORTED_MODULE_4__["CartComponent"]
     },
     {
-        path: 'payment',
-        component: _components_payment_payment_component__WEBPACK_IMPORTED_MODULE_5__["PaymentComponent"]
+        path: 'checkout',
+        component: _components_checkout_checkout_component__WEBPACK_IMPORTED_MODULE_5__["CheckoutComponent"]
     }
 ];
 var ProductRoutingModule = /** @class */ (function () {
@@ -10921,7 +11029,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_cart_cart_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/cart/cart.component */ "./src/app/product.module/components/cart/cart.component.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _components_checkout_checkout_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/checkout/checkout.component */ "./src/app/product.module/components/checkout/checkout.component.ts");
-/* harmony import */ var _components_payment_payment_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/payment/payment.component */ "./src/app/product.module/components/payment/payment.component.ts");
+/* harmony import */ var _shared_form_shared_form_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../shared-form/shared-form.module */ "./src/app/shared-form/shared-form.module.ts");
+/* harmony import */ var _components_payment_payment_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/payment/payment.component */ "./src/app/product.module/components/payment/payment.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10936,6 +11045,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+// import { SharedFormModule} from '../shared-form/shared-form.module'
+
 
 var ProductModule = /** @class */ (function () {
     function ProductModule() {
@@ -10945,9 +11056,10 @@ var ProductModule = /** @class */ (function () {
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
                 _product_routing_module__WEBPACK_IMPORTED_MODULE_3__["ProductRoutingModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"]
+                _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"],
+                _shared_form_shared_form_module__WEBPACK_IMPORTED_MODULE_8__["SharedFormModule"]
             ],
-            declarations: [_components_product_list_product_list_component__WEBPACK_IMPORTED_MODULE_2__["ProductListComponent"], _product_component__WEBPACK_IMPORTED_MODULE_4__["ProductComponent"], _components_cart_cart_component__WEBPACK_IMPORTED_MODULE_5__["CartComponent"], _components_checkout_checkout_component__WEBPACK_IMPORTED_MODULE_7__["CheckoutComponent"], _components_payment_payment_component__WEBPACK_IMPORTED_MODULE_8__["PaymentComponent"]]
+            declarations: [_components_product_list_product_list_component__WEBPACK_IMPORTED_MODULE_2__["ProductListComponent"], _product_component__WEBPACK_IMPORTED_MODULE_4__["ProductComponent"], _components_cart_cart_component__WEBPACK_IMPORTED_MODULE_5__["CartComponent"], _components_checkout_checkout_component__WEBPACK_IMPORTED_MODULE_7__["CheckoutComponent"], _components_payment_payment_component__WEBPACK_IMPORTED_MODULE_9__["PaymentComponent"]]
         })
     ], ProductModule);
     return ProductModule;
@@ -11008,12 +11120,31 @@ var CartService = /** @class */ (function () {
             sessionStorage.setItem('cart', JSON.stringify(this.cart));
         }
     };
+    CartService.prototype.remoteFromCart = function (id) {
+        var i = this.cart.findIndex(function (prod) { return prod.id === id; });
+        this.cart.splice(i, 1);
+        if (this.authService.loggedIn()) {
+            localStorage.setItem('cart', JSON.stringify(this.cart));
+        }
+        else {
+            sessionStorage.setItem('cart', JSON.stringify(this.cart));
+        }
+    };
     CartService.prototype.getCart = function () {
         if (this.authService.loggedIn()) {
             this.cart = JSON.parse(localStorage.getItem('cart')) || [];
         }
         else {
             this.cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+        }
+    };
+    CartService.prototype.clearCart = function () {
+        this.cart = [];
+        if (this.authService.loggedIn()) {
+            localStorage.setItem('cart', JSON.stringify(this.cart));
+        }
+        else {
+            sessionStorage.setItem('cart', JSON.stringify(this.cart));
         }
     };
     CartService = __decorate([

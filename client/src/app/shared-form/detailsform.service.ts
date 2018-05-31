@@ -9,8 +9,18 @@ export class DetailsformService {
   address;
   mobile;
   operation;
+  goBackLink;
+  detailsFlag;
+  emailFlag;
+  confirmFlag;
   constructor() { }
 
   onClick(){
+  }
+  clearFields(){
+    this.email = "";
+    this.name = "";
+    this.address = "";
+    this.mobile = "";
   }
 }

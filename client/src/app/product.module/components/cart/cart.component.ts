@@ -24,6 +24,7 @@ export class CartComponent implements OnInit {
     //   this.cartService.cart = JSON.parse(sessionStorage.getItem('cart')) || [];
     //   console.log("session")
     // }
+    
     this.total = 0;
     this.cartService.getCart();
     this.cartService.cart.forEach(product => {
@@ -35,6 +36,8 @@ export class CartComponent implements OnInit {
   }
   onClickRemove(product){
     this.cartService.remoteFromCart(product.id);
+    this.total -= product.price;
+    
   }
   checkout(){
     

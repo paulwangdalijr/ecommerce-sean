@@ -52,4 +52,12 @@ export class CartService {
     }
 
   }
+  clearCart(){
+    this.cart = [];
+    if(this.authService.loggedIn()){     
+      localStorage.setItem('cart', JSON.stringify(this.cart));
+    }else{
+      sessionStorage.setItem('cart', JSON.stringify(this.cart));
+    }
+  }
 }
