@@ -1,6 +1,7 @@
 const database = require('../config/database');
 const express = require('express');
 const router = express.Router();
+const upload = require('../upload/upload');
 
 checkAdmin = (id, cb) =>{
 	database.get("SELECT type FROM user WHERE ID = ?", id, (err,row)=>{
@@ -25,7 +26,6 @@ updateCategoryTable = (productID, req, res, operation) =>{
 		if(err){
 			res.json({success: false, message: "Category operation failed"});
 		}else{
-
 			let counter = cat_prod.length;
 			cat_prod.forEach(obj => {
 				stmt = database.prepare("INSERT OR IGNORE INTO category_product VALUES (?,?)");
@@ -35,11 +35,16 @@ updateCategoryTable = (productID, req, res, operation) =>{
 						res.json({success: false, message: "Category operation failed"});
 					}else{
 						if(counter === 0){
-							res.json({success: true, message: "Product " + operation});
+							return;
 						}
 					}
 				});		
-			});	
+			});
+			if(operation === "added"){
+				res.json({success: true, id: productID, message: "Product " + operation});					
+			}else{
+				res.json({success: true, message: "Product " + operation});	
+			}
 
 		}
 	});			
@@ -214,6 +219,39 @@ module.exports = (authRouter) => {
 		}
 	});
 
+	authRouter.post('/imageUpload', (req,res)=>{
+		checkAdmin(req.decoded.userId, (flag) => {	
+			if(flag){
+				upload(req, res, (err)=>{
+					if(err){						
+						res.json({success: false, message: "Image upload failed"});								
+					}else{
+						res.json({success: true, message: "Image uploaded"});								
+						
+					}
+				});
+			}else{
+				res.json({success: false, message: "User not authorized"});				
+			}
+		});
+	});
+
+
+	authRouter.get('/orders', (req, res) => {
+		checkAdmin(req.decoded.userId, (flag) => {	
+			if(flag){
+				database.all("SELECT * FROM salesorder", (err,rows)=>{
+					if(err){
+						res.json({ success: false, message: "Error getting orders: " + err });
+					}else{
+						res.json({ success: true, orders: rows });
+					}
+				});		
+			}else{
+				res.json({success: false, message: "User not authorized"});				
+			}			
+		});
+	});
 
 
 	return router;

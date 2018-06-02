@@ -59,7 +59,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"common":"common","admin-module-admin-module":"admin-module-admin-module","product-module-product-module":"product-module-product-module"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"admin-module-admin-module~product-module-product-module":"admin-module-admin-module~product-module-product-module","admin-module-admin-module":"admin-module-admin-module","product-module-product-module":"product-module-product-module"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	var deferredModules = [];

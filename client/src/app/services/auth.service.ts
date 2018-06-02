@@ -18,7 +18,8 @@ export class AuthService {
   loggingOut;
   loggingIn;
 
-  domain = 'http://localhost:3000'; //dev
+  // domain = 'http://localhost:3000'; //dev
+  domain = ''; //prod
 
   constructor(
   	private http: HttpClient
@@ -93,10 +94,13 @@ export class AuthService {
     //       return data.success;
     //     }));
   }
-  createOrder(items){
+  createOrder(i_user, i_items){
     this.createAuthenticationHeaders();   
-    console.log(items); 
-    return this.http.post(this.domain + '/auth/createOrder', items, this.options);
+    let params = {
+      user: i_user,
+      items: i_items,
+    }
+    return this.http.post(this.domain + '/auth/createOrder', params, this.options);
   }
   createOrderNotLoggedIn(i_user, i_items){
     let params = {
@@ -127,7 +131,7 @@ export class AuthService {
         if(data.success){
           this.authEmail = data.user.username;
           this.userType = data.user.type;
-          console.log(this.userType);
+          // console.log(this.userType);
         }
         return data;
       }));

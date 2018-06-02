@@ -70,7 +70,6 @@ router.post('/createOrderNoAuth', (req, res) => {
     }else if( !req.body.address && req.body.user.address === '' ){
         res.json({ success: false, message: 'No address' });  
     }else{        
-        console.log(req.body);
         stmt = database.prepare("INSERT OR IGNORE INTO salesorder VALUES (NULL,?,?,?)");
         stmt.run(Date.now(),JSON.stringify(req.body.user), JSON.stringify(req.body.items),(err,row)=>{
             if(err){
@@ -174,9 +173,17 @@ router.get('/adminprofile', (req, res) => {
 router.post('/createOrder', (req, res) => {
     if( !req.body.items && req.body.items === '' ){
         res.json({ success: false, message: 'No products' });
+    }else if( !req.body.email && req.body.user.email === '' ){
+        res.json({ success: false, message: 'No email' });   
+    }else if( !req.body.name && req.body.user.name === '' ){
+        res.json({ success: false, message: 'No name' });  
+    }else if( !req.body.mobile && req.body.user.mobile === '' ){
+        res.json({ success: false, message: 'No mobile' });  
+    }else if( !req.body.address && req.body.user.address === '' ){
+        res.json({ success: false, message: 'No address' });  
     }else{
         stmt = database.prepare("INSERT OR IGNORE INTO salesorder VALUES (NULL,?,?,?)");
-        stmt.run(Date.now(),req.decoded.userId, JSON.stringify(req.body.items),(err,row)=>{
+        stmt.run(Date.now(),JSON.stringify(req.body.user), JSON.stringify(req.body.items),(err,row)=>{
             if(err){
 				res.json({success: false, message: "Order operation failed"});                
             }else{

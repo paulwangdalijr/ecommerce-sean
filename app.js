@@ -17,6 +17,7 @@ const passport = require('passport');
 const social = require('./passport/passport')(app, passport);
 const session = require('express-session');
 
+
 // database.serialize();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,12 +32,21 @@ app.use(cookieParser());
 //         resave: true));
 
 app.use(express.static(path.join(__dirname, 'public'))); 
+app.use('/img', express.static(path.join(__dirname, 'images'))); 
 
-// dev purposes
-app.use(cors({
-  origin: 'http://localhost:4200'
-}));
-
+// // dev purposes
+// // app.use(cors({
+// //   origin: 'http://localhost:4200'
+// // }));
+// app.use(function(req, res, next) {
+//   //set headers to allow cross origin request.
+//     res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+//     res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-auth-token");
+//     res.header('Access-Control-Allow-Credentials', 'true');
+//     next();
+// });
+// // app.use(cors());
 
 app.use('/auth', authRouter);
 app.use('/api/product', productRouter)

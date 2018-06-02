@@ -47,6 +47,10 @@ export class CheckoutComponent implements OnInit {
             this.detailsFormService.detailsFlag = true;
           } 
         })
+      }else{
+        this.detailsFormService.detailsFlag = false;  
+        this.detailsFormService.emailFlag = false;
+              
       }
     }else{
       this.router.navigate(['/cart']);
@@ -70,9 +74,16 @@ export class CheckoutComponent implements OnInit {
       this.processing = false;    
     }, 2000);
 
+    let user = {
+      email: this.detailsFormService.email,
+      name: this.detailsFormService.name,
+      address: this.detailsFormService.address,
+      mobile: this.detailsFormService.mobile
+    }
+
     this.cartService.getCart();    
     if(this.authService.loggedIn()){
-      this.authService.createOrder(this.cartService.cart).subscribe((data:any)=>{
+      this.authService.createOrder(user, this.cartService.cart).subscribe((data:any)=>{
         if(data.success){
           this.orderNumber = data.order;
           this.cartService.clearCart();
@@ -81,12 +92,6 @@ export class CheckoutComponent implements OnInit {
         }
       });
     }else{
-      let user = {
-        email: this.detailsFormService.email,
-        name: this.detailsFormService.name,
-        address: this.detailsFormService.address,
-        mobile: this.detailsFormService.mobile
-      }
       this.authService.createOrderNotLoggedIn(user, this.cartService.cart).subscribe((data:any)=>{
         if(data.success){
           this.orderNumber = data.order;

@@ -10,12 +10,12 @@
 var map = {
 	"./admin.module/admin.module": [
 		"./src/app/admin.module/admin.module.ts",
-		"common",
+		"admin-module-admin-module~product-module-product-module",
 		"admin-module-admin-module"
 	],
 	"./product.module/product.module": [
 		"./src/app/product.module/product.module.ts",
-		"common",
+		"admin-module-admin-module~product-module-product-module",
 		"product-module-product-module"
 	]
 };
@@ -265,7 +265,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-4 lead\">\n  <p>This is a demo app developed by <a href=\"mailto:paulwangdalijr@gmail.com\"><span class=\"text-primary\">Paul Wangdali Jr.</span></a></p>\n  <p>Due to his boredom and wanting to try new things, he developed this awesome E-commerce website using the following technologies:</p>  \n  <p>Angular 6, Node.js, Express.js, SQLite, Bootstrap 4 using Bootswatch Lux Theme and utilizing some of the NPM packages to rapidly develop this wonderful website :)</p>\n  <p>Some of the functionalities are yet to be implemented!!!</p>\n  <p></p>\n</div>"
+module.exports = "<div class=\"container pt-4 lead\">\r\n  <p>This is a demo app developed by <a href=\"mailto:paulwangdalijr@gmail.com\"><span class=\"text-primary\">Paul Wangdali Jr.</span></a></p>\r\n  <p>Angular 6, Node.js, Express.js, SQLite, Bootstrap 4 using Bootswatch Lux Theme and utilizing some of the NPM packages to rapidly develop this amazing E-commerce website :)</p>\r\n  <p>Some of the functionalities are yet to be implemented!!!</p><br>\r\n  <h4>Modules:</h4>\r\n  <p><span class=\"text-primary\">Admin Module</span> - Admin users can add/edit/delete products, add/delete categories and view orders - Orders are generated on user's checkout</p>\r\n  <p><span class=\"text-primary\">User Module</span> - A user can view products, add products to cart, perform checkout and place an order.</p>\r\n  <p><span class=\"text-primary\">Sign up Module</span> - A user can create an account, creating an account will allow the user to save profile information which will help him to checkout faster as the checkout form will be auto populated based on his profile.</p>\r\n  <p><span class=\"text-primary\">Sign in Module</span> - A user can sign through his created account or through Facebook.</p>\r\n  <p><span class=\"text-primary\">Cart Module</span> - A user can add products, view and modify his cart.</p>\r\n  <p><span class=\"text-primary\">Check out Module</span> - Once a user has decided to confirm his purchase, he can proceed to check out and place an order. An order number will be generated.</p>\r\n</div>\r\n<div class=\"footer-info\">\r\n\t\t<br><br>\r\n    <p>Contact me for any SAP ABAP, Web scraping scripts, VBA/Macro, Web automation or Web development projects :)</p>\r\n\t\t<p class=\"col-form-label-sm\"><u><a target=\"_blank\" href=\"https://www.linkedin.com/in/paul-wangdali-jr-0788914b/\">LinkedIn</a></u></p>\r\n    <p class=\"col-form-label-sm\"><u><a target=\"_blank\" href=\"https://www.upwork.com/fl/paulwangdalijr\">Upwork</a></u></p>\r\n    <p class=\"col-form-label-sm\"><u><a target=\"_blank\" href=\"mailto:paulwangdalijr@gmail.com\">Email</a></u></p>\r\n\t</div>"
 
 /***/ }),
 
@@ -298,7 +298,6 @@ var AboutComponent = /** @class */ (function () {
     }
     AboutComponent.prototype.ngOnInit = function () {
         // console.log(this.authService.testing);
-        console.log(this.authService.testing);
     };
     AboutComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -396,7 +395,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-4\">\n  \n  <!-- Custom Success/Error Message -->\n  <div class=\"show-hide-message text-center\">\n    <div [ngClass]=\"messageClass\">\n      {{ message }}\n    </div>\n  </div>\n\n<div class=\"row\">\n\n  <div class=\"col-3\"></div>\n  <div class=\"col-6\">\n    \n  <h1 class=\"page-header\">Login</h1>\n  <!-- Login Form -->\n  <form [formGroup]=\"form\"  (submit)=\"onLoginSubmit()\">\n\n    <!-- email Field -->\n    <div class=\"form-group\">\n      <label for=\"email\">Email</label>\n      <div [ngClass]=\"{'has-error': form.controls.email.errors && form.controls.email.dirty, 'has-success': form.controls.email.valid && form.controls.email.dirty }\">\n        <input class=\"form-control\" type=\"text\" name=\"email\" formControlName=\"email\" />\n        <!-- Validation -->\n        <ul class=\"help-block\">\n          <li *ngIf=\"form.controls.email.errors?.required && form.controls.email.dirty\">This field is required.</li>\n        </ul>\n      </div>\n    </div>\n\n    <!-- Password Field  -->\n    <div class=\"form-group\">\n      <label for=\"password\">Password</label>\n      <div [ngClass]=\"{'has-error': form.controls.password.errors && form.controls.password.dirty, 'has-success': form.controls.password.valid && form.controls.password.dirty }\">\n        <input class=\"form-control\" type=\"password\" name=\"password\" formControlName=\"password\" />\n        <!-- Validation -->\n        <ul class=\"help-block\">\n          <li *ngIf=\"form.controls.password.errors?.required && form.controls.password.dirty\">This field is required.</li>\n        </ul>\n      </div>\n    </div>\n    <!-- Submit Button -->\n    <input [disabled]=\"!form.valid || processing\" class=\"btn btn-primary\" type=\"submit\" value=\"Login\" />\n    <a href=\"/auth/facebook\" ><button type=\"button\" class=\"btn btn-info float-right\">Facebook</button></a>\n  </form>\n  </div>\n</div>\n</div>"
+module.exports = "<div class=\"container pt-4\">\r\n  \r\n  <!-- Custom Success/Error Message -->\r\n  <div class=\"show-hide-message text-center\">\r\n    <div [ngClass]=\"messageClass\">\r\n      {{ message }}\r\n    </div>\r\n  </div>\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"col-1 col-md-3\"></div>\r\n  <div class=\"col-12 col-md-6\">\r\n    \r\n  <h1 class=\"page-header\">Login</h1>\r\n  <!-- Login Form -->\r\n  <form [formGroup]=\"form\"  (submit)=\"onLoginSubmit()\">\r\n\r\n    <!-- email Field -->\r\n    <div class=\"form-group\">\r\n      <label for=\"email\">Email</label>\r\n      <div [ngClass]=\"{'has-error': form.controls.email.errors && form.controls.email.dirty, 'has-success': form.controls.email.valid && form.controls.email.dirty }\">\r\n        <input class=\"form-control\" type=\"text\" name=\"email\" formControlName=\"email\" />\r\n        <!-- Validation -->\r\n        <ul class=\"help-block\">\r\n          <li *ngIf=\"form.controls.email.errors?.required && form.controls.email.dirty\">This field is required.</li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n\r\n    <!-- Password Field  -->\r\n    <div class=\"form-group\">\r\n      <label for=\"password\">Password</label>\r\n      <div [ngClass]=\"{'has-error': form.controls.password.errors && form.controls.password.dirty, 'has-success': form.controls.password.valid && form.controls.password.dirty }\">\r\n        <input class=\"form-control\" type=\"password\" name=\"password\" formControlName=\"password\" />\r\n        <!-- Validation -->\r\n        <ul class=\"help-block\">\r\n          <li *ngIf=\"form.controls.password.errors?.required && form.controls.password.dirty\">This field is required.</li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n    <!-- Submit Button -->\r\n    <input [disabled]=\"!form.valid || processing\" class=\"btn btn-primary\" type=\"submit\" value=\"Login\" />\r\n    <a href=\"/auth/facebook\" ><button type=\"button\" class=\"btn btn-info float-right\">Facebook</button></a>\r\n  </form>\r\n  </div>\r\n</div>\r\n</div>\r\n<div></div>\r\n\r\n<div class=\"footer-info\">\r\n\t\t<br><br>\r\n  <p class=\"col-form-label-sm\">Try out the Admin Module (not optimized for mobile)</p>\r\n  <p class=\"col-form-label-sm\"><u>Email: admin</u></p>\r\n  <p class=\"col-form-label-sm\"><u>Password: Today@123</u></p>\r\n</div>"
 
 /***/ }),
 
@@ -435,8 +434,6 @@ var LoginComponent = /** @class */ (function () {
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.createForm();
-        this.authService.testing = "testing!!!!";
-        console.log("testing set!");
     };
     LoginComponent.prototype.createForm = function () {
         this.form = this.formBuilder.group({
@@ -462,6 +459,7 @@ var LoginComponent = /** @class */ (function () {
                 }, 2000);
             }
             else {
+                _this.authService.loggingIn = true;
                 _this.messageClass = 'alert alert-success';
                 _this.message = "Login successful";
                 _this.authService.storeUserToken(data.token);
@@ -477,6 +475,7 @@ var LoginComponent = /** @class */ (function () {
                     }
                     _this.message = "";
                     _this.messageClass = '';
+                    _this.authService.loggingIn = false;
                 }, 2000);
             }
         });
@@ -505,7 +504,7 @@ var LoginComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".account-button{\n\tfont-size: 30px;\n\tmargin-right: 15px;\n}\n.account-button i{\n\tfont-size: 30px;\n\tmargin-right: 15px;\n}\n.account-button:hover{\n\tcursor: pointer;\n}"
+module.exports = ".account-button{\r\n\tfont-size: 30px;\r\n\tmargin-right: 15px;\r\n}\r\n.account-button i{\r\n\tfont-size: 30px;\r\n\tmargin-right: 15px;\r\n}\r\n.account-button:hover{\r\n\tcursor: pointer;\r\n}\r\n.navbar{\r\n}"
 
 /***/ }),
 
@@ -516,7 +515,7 @@ module.exports = ".account-button{\n\tfont-size: 30px;\n\tmargin-right: 15px;\n}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">\n  <a class=\"navbar-brand\" href=\"#\">Shopping!</a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarColor02\" aria-controls=\"navbarColor02\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarColor02\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\">\n        <a class=\"nav-link\" routerLink=\"\">Home <span class=\"sr-only\">(current)</span></a>\n      </li>      \n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\">\n        <a class=\"nav-link\" routerLink=\"about\">About</a>\n      </li>\n    </ul>\n    <form class=\"form-inline my-2 my-lg-0\">\n      <div class=\"btn-group show\" role=\"group\">\n        <div class=\"account-button dropdown-toggle\" data-toggle=\"dropdown\">\n           <i class=\"fas fa-user\"></i>\n        </div>\n        <div class=\"dropdown-menu\" x-placement=\"bottom-start\" style=\"position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 48px, 0px);\">\n          <a *ngIf=\"!authService.loggedIn()\" class=\"dropdown-item\" routerLink=\"login\">Login</a>\n          <a *ngIf=\"!authService.loggedIn()\" class=\"dropdown-item\" routerLink=\"signup\">Sign Up</a>\n          <a *ngIf=\"authService.loggedIn() && !authService.isAdmin() \" class=\"dropdown-item\" routerLink=\"profile\">Profile</a>\n          <a *ngIf=\"authService.isAdmin()\" class=\"dropdown-item\" routerLink=\"admin\">Dashboard</a>\n          <a *ngIf=\"authService.loggedIn()\" (click)=\"onLogoutClick()\" class=\"dropdown-item\">Logout</a>\n        </div>\n      </div>\n      <input class=\"form-control mr-sm-2\" type=\"text\" placeholder=\"Search\">\n      <!-- <button class=\"btn btn-secondary my-2 my-sm-0\" type=\"submit\">Search</button> -->\n    </form>\n  </div>\n</nav>\n\n<div *ngIf=\"loggingOut\" class=\"text-center\">\n  <h5>Logging out...</h5>\n  <div class=\"progress\">\n    <div class=\"progress-bar progress-bar-striped progress-bar-animated bg-success\" role=\"progressbar\" aria-valuenow=\"75\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 100%\"></div>\n  </div>\n</div>\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">\r\n  <a class=\"navbar-brand\" routerLink=\"\">It's Shopping Time!</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarColor02\" aria-controls=\"navbarColor02\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarColor02\">\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\" data-toggle=\"collapse\" data-target=\".navbar-collapse.show\">\r\n        <a class=\"nav-link\" routerLink=\"\">Home <span class=\"sr-only\">(current)</span></a>\r\n      </li>      \r\n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\" data-toggle=\"collapse\" data-target=\".navbar-collapse.show\">\r\n        <a class=\"nav-link\" routerLink=\"about\">About</a>\r\n      </li>\r\n    </ul>\r\n    <form class=\"form-inline my-2 my-lg-0\">\r\n      <div class=\"btn-group show\" role=\"group\">\r\n        <div class=\"account-button dropdown-toggle\" data-toggle=\"dropdown\">\r\n           <i class=\"fas fa-user\"></i>\r\n        </div>\r\n        <div class=\"dropdown-menu\" x-placement=\"bottom-start\" style=\"position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 48px, 0px);\">\r\n          <div data-toggle=\"collapse\" data-target=\".navbar-collapse.show\"><a *ngIf=\"!authService.loggedIn()\" class=\"dropdown-item\" routerLink=\"login\">Login</a></div>\r\n          <div data-toggle=\"collapse\" data-target=\".navbar-collapse.show\"><a *ngIf=\"!authService.loggedIn()\" class=\"dropdown-item\" routerLink=\"signup\">Sign Up</a></div>\r\n          <div data-toggle=\"collapse\" data-target=\".navbar-collapse.show\"><a *ngIf=\"authService.loggedIn() && !authService.isAdmin() \" class=\"dropdown-item\" routerLink=\"profile\">Profile</a></div>\r\n          <div data-toggle=\"collapse\" data-target=\".navbar-collapse.show\"><a *ngIf=\"authService.isAdmin()\" class=\"dropdown-item\" routerLink=\"admin\">Dashboard</a></div>\r\n          <div data-toggle=\"collapse\" data-target=\".navbar-collapse.show\"><a *ngIf=\"authService.loggedIn()\" (click)=\"onLogoutClick()\" class=\"dropdown-item\">Logout</a></div>\r\n        </div>\r\n      </div>\r\n      <input class=\"form-control mr-sm-2\" type=\"text\" placeholder=\"Search\">\r\n      <!-- <button class=\"btn btn-secondary my-2 my-sm-0\" type=\"submit\">Search</button> -->\r\n    </form>\r\n  </div>\r\n</nav>\r\n\r\n<div *ngIf=\"this.authService.loggingOut || this.authService.loggingIn\" class=\"text-center p-2\">\r\n  <h5 *ngIf=\"this.authService.loggingOut\">Logging out...</h5>\r\n  <div class=\"progress\">\r\n    <div class=\"progress-bar progress-bar-striped progress-bar-animated bg-success\" role=\"progressbar\" aria-valuenow=\"75\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 100%\"></div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -554,11 +553,11 @@ var NavbarComponent = /** @class */ (function () {
     };
     NavbarComponent.prototype.onLogoutClick = function () {
         var _this = this;
-        this.loggingOut = true;
+        this.authService.loggingOut = true;
         setTimeout(function () {
             _this.authService.logout();
             _this.router.navigate(['']);
-            _this.loggingOut = false;
+            _this.authService.loggingOut = false;
         }, 2000);
     };
     NavbarComponent = __decorate([
@@ -595,7 +594,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-4\"> \n  \n<!-- Custom Success/Error Message -->\n    <div class=\"show-hide-message text-center\">\n        <div [ngClass]=\"messageClass\">\n        {{ message }}\n        </div>\n    </div>\n    <p class=\"text-primary text-center\">Please update your profile, these details will be used during checkout.</p>\n    <app-detailsform></app-detailsform>\n</div>\n"
+module.exports = "<div class=\"container pt-4\"> \r\n  \r\n<!-- Custom Success/Error Message -->\r\n    <div class=\"show-hide-message text-center\">\r\n        <div [ngClass]=\"messageClass\">\r\n        {{ message }}\r\n        </div>\r\n    </div>\r\n    <p class=\"text-primary text-center\">Please update your profile, these details will be used during checkout.</p>\r\n    <app-detailsform></app-detailsform>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -715,7 +714,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-4\">\n\n\t<div class='show-hide-message text-center'>\n\t\t<div [ngClass]='messageClass'>\n\t\t\t{{message}}\n\t\t</div>\n\t</div>\n\n\t<!-- Registration Form -->\n\t<div class=\"row\">\n\t\t<div class=\"col-3\"></div>\n\t\t<div class=\"col-6\">\n\t\t\t<h1 class=\"page-header\">Signup</h1>\n\t\t\t<form id=\"registerForm\" [formGroup]=\"form\" (submit)=\"onRegisterSubmit()\">  \n\t\t\t\t\n\t\t\t\t<!-- Email Input -->\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label for=\"email\">Email</label>\n\t\t\t\t\t<!-- <div [ngClass]=\"{'has-danger': form.controls.email.dirty && (form.controls.email.errors || !emailValid ), 'has-success': !form.controls.email.errors && emailValid}\"> -->\n\t\t\t\t\t\t<input type=\"text\" name=\"email\" class=\"form-control\" autocomplete=\"off\" placeholder=\"*Email\" formControlName=\"email\" (blur)=\"checkEmail()\" \n\t\t\t\t\t\t[ngClass]=\"{'is-invalid': form.controls.email.dirty && (form.controls.email.errors || !emailValid ), 'is-valid': !form.controls.email.errors && emailValid}\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t\t<!-- Validation -->\n\t\t\t\t\t\t\n\t\t\t\t\t\t<ul class=\"help-block\"\n\t\t\t\t\t\t[ngClass]=\"{'invalid-feedback': form.controls.email.dirty && (form.controls.email.errors || !emailValid ), 'valid-feedback': !form.controls.email.errors && emailValid}\"\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<li *ngIf=\"form.controls.email.errors?.required && form.controls.email.dirty\">This field is required</li>\n\t\t\t\t\t\t\t<li *ngIf=\"(form.controls.email.errors?.minlength && form.controls.email.dirty || form.controls.email.errors?.maxlength && form.controls.email.dirty ) && form.controls.email.dirty\">Minimum characters: 5, Maximum characters: 30</li>\n\t\t\t\t\t\t\t<li *ngIf=\"form.controls.email.errors?.validateEmail && form.controls.email.dirty\">This must be a valid e-mail</li>\n\t\t\t\t\t\t\t<li *ngIf=\"emailMessage\">{{ emailMessage }}</li>\n\t\t\t\t\t\t</ul>\n\t\t\t\t\t<!-- </div> -->\n\t\t\t\t</div>\n\n\t\t\t\t<!-- Password Input -->\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label for=\"password\">Password</label>\n\t\t\t\t\t<!-- <div [ngClass]=\"{'has-danger': (form.controls.password.errors && form.controls.password.dirty), 'has-success': !form.controls.password.errors}\"> -->\n\t\t\t\t\t\t<input type=\"password\" name=\"password\" class=\"form-control\" autocomplete=\"off\" placeholder=\"*Password\" formControlName=\"password\" \n\t\t\t\t\t\t[ngClass]=\"{'is-invalid': (form.controls.password.errors && form.controls.password.dirty), 'is-valid': !form.controls.password.errors}\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t\t<!-- Validation -->\n\t\t\t\t\t\t<ul class=\"help-block\"\n\t\t\t\t\t\t[ngClass]=\"{'invalid-feedback': (form.controls.password.errors && form.controls.password.dirty), 'valid-feedback': !form.controls.password.errors}\"\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<li *ngIf=\"form.controls.password.errors?.required && form.controls.password.dirty\">This field is required</li>\n\t\t\t\t\t\t\t<li *ngIf=\"form.controls.password.errors?.minlength && form.controls.password.dirty || form.controls.password.errors?.maxlength && form.controls.password.dirty \">Password must be at least 8 characters but no more than 35</li>\n\t\t\t\t\t\t\t<li *ngIf=\"form.controls.password.errors?.validatePassword && form.controls.password.dirty\">Password must have 1 uppercase character, 1 lowercase character, 1 special character and 1 number</li>\n\t\t\t\t\t\t</ul>\n\t\t\t\t\t<!-- </div> -->\n\t\t\t\t</div>\n\n\t\t\t\t<!-- Confirm Password Input -->\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label for=\"confirm\">Confirm Password</label>\n\t\t\t\t\t<!-- <div [ngClass]=\"{'has-danger': (form.controls.confirm.errors && form.controls.confirm.dirty) || (form.errors?.matchingPasswords && form.controls.confirm.dirty), 'has-success': !form.controls.confirm.errors && !form.errors?.matchingPasswords}\"> -->\n\t\t\t\t\t\t<input type=\"password\" name=\"confirm\" class=\"form-control\" autocomplete=\"off\" placeholder=\"*Confirm Password\" formControlName=\"confirm\" \n\t\t\t\t\t\t[ngClass]=\"{'is-invalid': (form.controls.confirm.errors && form.controls.confirm.dirty) || (form.errors?.matchingPasswords && form.controls.confirm.dirty), 'is-valid': !form.controls.confirm.errors && !form.errors?.matchingPasswords}\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t\t<!-- Validation -->\n\t\t\t\t\t\t<ul class=\"help-block\"\n\t\t\t\t\t\t[ngClass]=\"{'invalid-feedback': (form.controls.confirm.errors && form.controls.confirm.dirty) || (form.errors?.matchingPasswords && form.controls.confirm.dirty), 'valid-feedback': !form.controls.confirm.errors && !form.errors?.matchingPasswords}\"\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<li *ngIf=\"form.controls.confirm.errors?.required && form.controls.confirm.dirty\">This field is required</li>\n\t\t\t\t\t\t\t<li *ngIf=\"form.errors?.matchingPasswords && form.controls.confirm.dirty\">Password do not match</li>\n\t\t\t\t\t\t</ul>\n\t\t\t\t\t<!-- </div> -->\n\t\t\t\t</div>\n\n\t\t\t\t<!-- Submit Input -->\n\t\t\t\t<input [disabled]=\"!form.valid || !emailValid || processing\" type=\"submit\" class=\"btn btn-primary\" value=\"Submit\" />\n\n\t\t\t</form>\n\t\t\t<!-- Registration Form /-->\n\t\t</div>\n\t</div>\n\t<div class=\"footer-info\">\n\t\t<br><br>\n\t\t<p class=\"text-right col-form-label-sm\">Reactive Form was used here, you can't pass the front end validation :P</p>\n\t</div>\n</div>\n"
+module.exports = "<div class=\"container pt-4\">\r\n\r\n\t<div class='show-hide-message text-center'>\r\n\t\t<div [ngClass]='messageClass'>\r\n\t\t\t{{message}}\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<!-- Registration Form -->\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col-1 col-md-3\"></div>\r\n\t\t<div class=\"col-12 col-md-6\">\r\n\t\t\t<h1 class=\"page-header\">Signup</h1>\r\n\t\t\t<form id=\"registerForm\" [formGroup]=\"form\" (submit)=\"onRegisterSubmit()\">  \r\n\t\t\t\t\r\n\t\t\t\t<!-- Email Input -->\r\n\t\t\t\t<div class=\"form-group\">\r\n\t\t\t\t\t<label for=\"email\">Email</label>\r\n\t\t\t\t\t<!-- <div [ngClass]=\"{'has-danger': form.controls.email.dirty && (form.controls.email.errors || !emailValid ), 'has-success': !form.controls.email.errors && emailValid}\"> -->\r\n\t\t\t\t\t\t<input type=\"text\" name=\"email\" class=\"form-control\" autocomplete=\"off\" placeholder=\"*Email\" formControlName=\"email\" (blur)=\"checkEmail()\" \r\n\t\t\t\t\t\t[ngClass]=\"{'is-invalid': form.controls.email.dirty && (form.controls.email.errors || !emailValid ), 'is-valid': !form.controls.email.errors && emailValid}\"\r\n\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t<!-- Validation -->\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t<ul class=\"help-block\"\r\n\t\t\t\t\t\t[ngClass]=\"{'invalid-feedback': form.controls.email.dirty && (form.controls.email.errors || !emailValid ), 'valid-feedback': !form.controls.email.errors && emailValid}\"\r\n\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t<li *ngIf=\"form.controls.email.errors?.required && form.controls.email.dirty\">This field is required</li>\r\n\t\t\t\t\t\t\t<li *ngIf=\"(form.controls.email.errors?.minlength && form.controls.email.dirty || form.controls.email.errors?.maxlength && form.controls.email.dirty ) && form.controls.email.dirty\">Minimum characters: 5, Maximum characters: 30</li>\r\n\t\t\t\t\t\t\t<li *ngIf=\"form.controls.email.errors?.validateEmail && form.controls.email.dirty\">This must be a valid e-mail</li>\r\n\t\t\t\t\t\t\t<li *ngIf=\"emailMessage\">{{ emailMessage }}</li>\r\n\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t<!-- </div> -->\r\n\t\t\t\t</div>\r\n\r\n\t\t\t\t<!-- Password Input -->\r\n\t\t\t\t<div class=\"form-group\">\r\n\t\t\t\t\t<label for=\"password\">Password</label>\r\n\t\t\t\t\t<!-- <div [ngClass]=\"{'has-danger': (form.controls.password.errors && form.controls.password.dirty), 'has-success': !form.controls.password.errors}\"> -->\r\n\t\t\t\t\t\t<input type=\"password\" name=\"password\" class=\"form-control\" autocomplete=\"off\" placeholder=\"*Password\" formControlName=\"password\" \r\n\t\t\t\t\t\t[ngClass]=\"{'is-invalid': (form.controls.password.errors && form.controls.password.dirty), 'is-valid': !form.controls.password.errors}\"\r\n\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t<!-- Validation -->\r\n\t\t\t\t\t\t<ul class=\"help-block\"\r\n\t\t\t\t\t\t[ngClass]=\"{'invalid-feedback': (form.controls.password.errors && form.controls.password.dirty), 'valid-feedback': !form.controls.password.errors}\"\r\n\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t<li *ngIf=\"form.controls.password.errors?.required && form.controls.password.dirty\">This field is required</li>\r\n\t\t\t\t\t\t\t<li *ngIf=\"form.controls.password.errors?.minlength && form.controls.password.dirty || form.controls.password.errors?.maxlength && form.controls.password.dirty \">Password must be at least 8 characters but no more than 35</li>\r\n\t\t\t\t\t\t\t<li *ngIf=\"form.controls.password.errors?.validatePassword && form.controls.password.dirty\">Password must have 1 uppercase character, 1 lowercase character, 1 special character and 1 number</li>\r\n\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t<!-- </div> -->\r\n\t\t\t\t</div>\r\n\r\n\t\t\t\t<!-- Confirm Password Input -->\r\n\t\t\t\t<div class=\"form-group\">\r\n\t\t\t\t\t<label for=\"confirm\">Confirm Password</label>\r\n\t\t\t\t\t<!-- <div [ngClass]=\"{'has-danger': (form.controls.confirm.errors && form.controls.confirm.dirty) || (form.errors?.matchingPasswords && form.controls.confirm.dirty), 'has-success': !form.controls.confirm.errors && !form.errors?.matchingPasswords}\"> -->\r\n\t\t\t\t\t\t<input type=\"password\" name=\"confirm\" class=\"form-control\" autocomplete=\"off\" placeholder=\"*Confirm Password\" formControlName=\"confirm\" \r\n\t\t\t\t\t\t[ngClass]=\"{'is-invalid': (form.controls.confirm.errors && form.controls.confirm.dirty) || (form.errors?.matchingPasswords && form.controls.confirm.dirty), 'is-valid': !form.controls.confirm.errors && !form.errors?.matchingPasswords}\"\r\n\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t<!-- Validation -->\r\n\t\t\t\t\t\t<ul class=\"help-block\"\r\n\t\t\t\t\t\t[ngClass]=\"{'invalid-feedback': (form.controls.confirm.errors && form.controls.confirm.dirty) || (form.errors?.matchingPasswords && form.controls.confirm.dirty), 'valid-feedback': !form.controls.confirm.errors && !form.errors?.matchingPasswords}\"\r\n\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t<li *ngIf=\"form.controls.confirm.errors?.required && form.controls.confirm.dirty\">This field is required</li>\r\n\t\t\t\t\t\t\t<li *ngIf=\"form.errors?.matchingPasswords && form.controls.confirm.dirty\">Password do not match</li>\r\n\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t<!-- </div> -->\r\n\t\t\t\t</div>\r\n\r\n\t\t\t\t<!-- Submit Input -->\r\n\t\t\t\t<input [disabled]=\"!form.valid || !emailValid || processing\" type=\"submit\" class=\"btn btn-primary\" value=\"Submit\" />\r\n\r\n\t\t\t</form>\r\n\t\t\t<!-- Registration Form /-->\r\n\t\t</div>\r\n\t</div>\r\n\t<div class=\"footer-info\">\r\n\t\t<br><br>\r\n\t\t<p class=\"text-right col-form-label-sm\">Reactive Form was used here</p>\r\n\t</div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -794,8 +793,6 @@ var SignupComponent = /** @class */ (function () {
                 _this.processing = false;
             });
         }
-        console.log(this.form.get('email').errors);
-        console.log(this.emailValid);
     };
     SignupComponent.prototype.onRegisterSubmit = function () {
         var _this = this;
@@ -885,7 +882,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  social works!\n</p>\n"
+module.exports = "<p>\r\n  social works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -1134,7 +1131,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var AuthService = /** @class */ (function () {
     function AuthService(http) {
         this.http = http;
-        this.domain = 'http://localhost:3000'; //dev
+        // domain = 'http://localhost:3000'; //dev
+        this.domain = ''; //prod
         this.jwtHelper = new _auth0_angular_jwt__WEBPACK_IMPORTED_MODULE_2__["JwtHelperService"]();
     }
     AuthService.prototype.loadToken = function () {
@@ -1198,10 +1196,13 @@ var AuthService = /** @class */ (function () {
         //       return data.success;
         //     }));
     };
-    AuthService.prototype.createOrder = function (items) {
+    AuthService.prototype.createOrder = function (i_user, i_items) {
         this.createAuthenticationHeaders();
-        console.log(items);
-        return this.http.post(this.domain + '/auth/createOrder', items, this.options);
+        var params = {
+            user: i_user,
+            items: i_items,
+        };
+        return this.http.post(this.domain + '/auth/createOrder', params, this.options);
     };
     AuthService.prototype.createOrderNotLoggedIn = function (i_user, i_items) {
         var params = {
@@ -1230,7 +1231,7 @@ var AuthService = /** @class */ (function () {
             if (data.success) {
                 _this.authEmail = data.user.username;
                 _this.userType = data.user.type;
-                console.log(_this.userType);
+                // console.log(this.userType);
             }
             return data;
         }));
@@ -1319,7 +1320,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n\t<div class=\"row\">  \n    <div class=\"col-0 col-md-2\"></div>\n    <div class=\"col-12 col-md-8\">\n      <form name=\"form\" id=\"checkoutForm\">\t\n        <div class=\"form-group\">\n          <label for=\"exampleInputEmail1\">Email address</label>\n          <input [disabled]=\"detailsFormService.emailFlag\" type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"*Enter email\" [(ngModel)]=\"detailsFormService.email\" name=\"email\">\n          <small id=\"emailHelp\" class=\"form-text text-muted\">We'll never share your email with anyone else.</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"name\">Full Name</label>\n          <input [disabled]=\"detailsFormService.detailsFlag\" type=\"text\" class=\"form-control\" placeholder=\"*Enter Name\" name=\"name\" [(ngModel)]=\"detailsFormService.name\" name=\"name\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"address\">Address</label>\n          <input [disabled]=\"detailsFormService.detailsFlag\" type=\"text\" class=\"form-control\" placeholder=\"*Enter Address\" [(ngModel)]=\"detailsFormService.address\" name=\"address\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"mobile\">Mobile Number</label>\n          <input [disabled]=\"detailsFormService.detailsFlag\" type=\"text\" class=\"form-control\" placeholder=\"*Enter Mobile Number\" [(ngModel)]=\"detailsFormService.mobile\" name=\"mobile\">\n        </div>\n        <button [disabled]=\"!detailsFormService.email ||\n        !detailsFormService.name ||\n        !detailsFormService.address ||\n        !detailsFormService.mobile\"         \n        type=\"button\" class=\"btn btn-primary\" (click)=\"detailsFormService.onClick()\">{{detailsFormService.operation}}</button>\n        <a routerLink=\"{{detailsFormService.goBackLink}}\"><button type=\"button\" class=\"btn btn-secondary\">\n          Back\n        </button></a>\n      </form>\n    </div>\n  </div>\n</div>\n<div class=\"footer-info\">\n\t\t<br><br>\n\t\t<p class=\"text-right col-form-label-sm\">This is a simple form, no validation included except mandatory fields :(</p>\n\t</div>"
+module.exports = "<div class=\"container\">\r\n\t<div class=\"row\">  \r\n    <div class=\"col-0 col-md-2\"></div>\r\n    <div class=\"col-12 col-md-8\">\r\n      <form name=\"form\" id=\"checkoutForm\">\t\r\n        <div class=\"form-group\">\r\n          <label for=\"exampleInputEmail1\">Email address</label>\r\n          <input [disabled]=\"detailsFormService.emailFlag\" type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"*Enter email\" [(ngModel)]=\"detailsFormService.email\" name=\"email\">\r\n          <small id=\"emailHelp\" class=\"form-text text-muted\">We'll never share your email with anyone else.</small>\r\n        </div>\r\n        <div class=\"form-group\">\r\n          <label for=\"name\">Full Name</label>\r\n          <input [disabled]=\"detailsFormService.detailsFlag\" type=\"text\" class=\"form-control\" placeholder=\"*Enter Name\" name=\"name\" [(ngModel)]=\"detailsFormService.name\" name=\"name\">\r\n        </div>\r\n        <div class=\"form-group\">\r\n          <label for=\"address\">Address</label>\r\n          <input [disabled]=\"detailsFormService.detailsFlag\" type=\"text\" class=\"form-control\" placeholder=\"*Enter Address\" [(ngModel)]=\"detailsFormService.address\" name=\"address\">\r\n        </div>\r\n        <div class=\"form-group\">\r\n          <label for=\"mobile\">Mobile Number</label>\r\n          <input [disabled]=\"detailsFormService.detailsFlag\" type=\"text\" class=\"form-control\" placeholder=\"*Enter Mobile Number\" [(ngModel)]=\"detailsFormService.mobile\" name=\"mobile\">\r\n        </div>\r\n        <button [disabled]=\"!detailsFormService.email ||\r\n        !detailsFormService.name ||\r\n        !detailsFormService.address ||\r\n        !detailsFormService.mobile\"         \r\n        type=\"button\" class=\"btn btn-primary\" (click)=\"detailsFormService.onClick()\">{{detailsFormService.operation}}</button>\r\n        <a routerLink=\"{{detailsFormService.goBackLink}}\"><button type=\"button\" class=\"btn btn-secondary\">\r\n          Back\r\n        </button></a>\r\n      </form>\r\n    </div>\r\n  </div>\r\n</div>\r\n<div class=\"footer-info\">\r\n\t\t<br><br>\r\n\t\t<p class=\"text-right col-form-label-sm\">This is a simple form, no validation included except mandatory fields :(</p>\r\n\t</div>"
 
 /***/ }),
 
@@ -1484,7 +1485,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\node\ecommerce-sean\client\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! D:\node\ecommerce-sean\client\src\main.ts */"./src/main.ts");
 
 
 /***/ })

@@ -26,7 +26,8 @@
 	height: auto;
 	min-height: 10em;
 	max-height: 10em;
-    max-width: 100%;
+	max-width: 100%;
+	width: 100%;
 }
 .add-to-cart{
 	height: auto;

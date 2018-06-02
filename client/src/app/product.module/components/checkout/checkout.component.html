@@ -32,7 +32,7 @@
 </div> -->
 <div class="container pt-4"> 
   <div *ngIf="!confirmed" id="formDetails">
-    <p class="text-primary text-center">Please confirm your details.</p>
+    <p class="text-primary text-center">Please confirm your details. <span *ngIf="this.authService.loggedIn()">Kindly update any info on the <u><a routerLink="/profile">Profile</a></u> page</span></p>
     
     <app-detailsform></app-detailsform>
     <button hidden data-toggle="modal" data-target="#confirmation" #modalToggleBtn></button>
