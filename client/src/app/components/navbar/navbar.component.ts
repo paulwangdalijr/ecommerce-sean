@@ -18,11 +18,11 @@ export class NavbarComponent implements OnInit {
   }
   
   onLogoutClick(){
-    this.loggingOut = true;
+    this.authService.loggingOut = true;
     setTimeout(()=>{
       this.authService.logout();
       this.router.navigate(['']);
-      this.loggingOut = false;
+      this.authService.loggingOut = false;
     },2000);
   }
 

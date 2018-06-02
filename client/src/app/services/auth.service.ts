@@ -15,6 +15,8 @@ export class AuthService {
   options;
   testing;
   profile;
+  loggingOut;
+  loggingIn;
 
   domain = 'http://localhost:3000'; //dev
 

@@ -31,7 +31,6 @@ export class CartComponent implements OnInit {
       this.total += product.price;
     });
 
-    console.log(this.cartService.cart);
 
   }
   onClickRemove(product){

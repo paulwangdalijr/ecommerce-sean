@@ -30,9 +30,9 @@
             [ngClass]="cardWidth" class="card">
             <a href='#'class="card-link" data-toggle="modal" data-target="#modalProduct" (click)="onProductSelect(product)">
               <div class="card-body">     
-                  <img  #img alt='test' src="http://www.paperairplanebehavioral.com/wp-content/uploads/2015/07/Airplane.png"/>
-                <h4 class="card-title">{{product.name}}</h4>
-                <h6 class="card-subtitle mb-2 text-muted">{{product.description}}</h6>
+                  <img  #img alt={{product.name}} src="{{authService.domain + '/img/' + product.id + '.jpg'}}"/>
+                <h5 class="card-title pt-3 text-truncate">{{product.name}}</h5>
+                <p class="card-subtitle mb-2 text-muted col-form-label-sm">{{product.description}}</p>
                 <p class="card-text"></p>
               </div>
             </a>   
@@ -68,7 +68,7 @@
             <div class="container">
               <div class="row">
                 <div class="col-sm">
-                  <img alt='test' #img src="http://www.paperairplanebehavioral.com/wp-content/uploads/2015/07/Airplane.png"/>
+                  <img alt='{{SelectedProduct.name}}' #img src="{{authService.domain + '/img/' + SelectedProduct.id + '.jpg'}}"/>
                 </div>
                 <div class="col-sm">
                   <div class="row pb-3">

@@ -21,8 +21,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   	this.createForm();
-    this.authService.testing = "testing!!!!";
-    console.log("testing set!")
   }
 
   createForm(){
@@ -48,6 +46,8 @@ export class LoginComponent implements OnInit {
         
         },2000);
      }else{
+        this.authService.loggingIn = true;
+       
         this.messageClass = 'alert alert-success';
         this.message = "Login successful";
        this.authService.storeUserToken(data.token);
@@ -62,6 +62,8 @@ export class LoginComponent implements OnInit {
          }
          this.message="";     
          this.messageClass = '';
+         this.authService.loggingIn = false;
+         
        },2000);
      }
    });

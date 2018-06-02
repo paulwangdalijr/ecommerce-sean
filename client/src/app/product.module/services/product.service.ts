@@ -1,18 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service'
+import { FileUploader, FileUploaderOptions } from 'ng2-file-upload'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-
   domain = 'http://localhost:3000'; //dev
+
+  attachmentList:any = [];
+  fileUploader: FileUploader;
+  options: FileUploaderOptions = {};
+  cb;
 
   constructor(
     private http: HttpClient,
     private authService: AuthService
-  ) { }
+  ) { 
+    
+    this.authService.loadToken();
+    this.fileUploader = new FileUploader({ url: this.domain + '/auth/imageUpload' 
+                                          });
+    this.fileUploader.onCompleteItem = (item, response, status, headers)=>{
+      this.cb();
+    };
+  }
 
   getAllProducts(){
     return this.http.get(this.domain + '/api/product/getProducts' ); 
@@ -41,6 +54,26 @@ export class ProductService {
   deleteCategory(id){
     this.authService.createAuthenticationHeaders();
     return this.http.delete(this.domain + '/auth/deleteCategory/'+ id, this.authService.options ); 
+  }
+  uploadFile(id, cb){
+    if(this.fileUploader.queue.length > 0 ){
+      // this.fileUploader.onCompleteItem = (item, response, status, headers)=>{
+      //   cb();
+      // };
+      this.cb = cb;
+      this.authService.loadToken();
+      this.options.headers = [{ name: 'x-auth-token', value: this.authService.authToken }]
+      this.fileUploader.queue[0].file.name = id;
+      this.fileUploader.setOptions(this.options);
+      this.fileUploader.uploadAll();
+    }else{
+      cb();
+    }
+  }
+
+  getAllOrders(){
+  	this.authService.createAuthenticationHeaders();    
+    return this.http.get(this.domain + '/auth/orders', this.authService.options ); 
   }
 
 

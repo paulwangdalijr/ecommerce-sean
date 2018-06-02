@@ -5,13 +5,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { ProductsComponent } from './components/products/products.component';
 import { CategoriesComponent } from './components/categories/categories.component';
+import { OrdersComponent } from './components/orders/orders.component';
 
 
 const routes: Routes = [
 	{path: '', component: AdminComponent, children: 
 	[ 
 		{path: '', component: ProductsComponent},
-		{path: 'categories', component: CategoriesComponent}
+		{path: 'categories', component: CategoriesComponent},
+		{path: 'orders', component: OrdersComponent}
 	]}
 ];
 

@@ -60,7 +60,7 @@ export class ProductListComponent implements OnInit {
 
       imgclone.animate({
           'width': 0,
-              'height': 0
+          'height': 0
       }, function () {
           $(this).detach()
       });
@@ -100,7 +100,6 @@ export class ProductListComponent implements OnInit {
     // console.log(product);
     // console.log(Object.getOwnPropertyNames(product.property));
     this.SelectedProperty = Object.getOwnPropertyNames(product.property);
-    console.log(this.SelectedProduct.property);
   }
 
   onChangeCheckBox(checked, category){

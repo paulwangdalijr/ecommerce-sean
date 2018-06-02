@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { ProductService } from '../../../product.module/services/product.service';
 import { Product } from '../../../product.module/models/product';
+// import { FileSelectDirective } from 'ng2-file-upload'
 
 @Component({
   selector: 'app-products',
@@ -21,6 +22,7 @@ export class ProductsComponent implements OnInit {
   operation;
   categories = [];
   cat_prod = [];
+  time;
 
   constructor(
   	private authService: AuthService,
@@ -95,8 +97,10 @@ export class ProductsComponent implements OnInit {
       }
       // this.productSelectedCategories.push(cat_prod);
     });
+    this.time = new Date().getTime() 
     this.productSelected = TempProduct;
     this.productSelectedProperty = Object.getOwnPropertyNames(TempProduct.property);
+    this.productService.fileUploader.queue = [];
   }
   onEditProductClick(product){
     this.operation = "edit";
@@ -137,13 +141,18 @@ export class ProductsComponent implements OnInit {
   }
   onAddClick(){    
     this.productService.addNewProduct(this.productSelected, this.productSelectedCategories).subscribe((data:any)=>{
-      this.getAllProducts();
+      if(data.success){
+        this.productService.uploadFile(data.id,()=>{this.getAllProducts()});      
+        // this.getAllProducts();
+      }
     });
   }
   onUpdateClick(){
-    this.productService.editProduct(this.productSelected, this.productSelectedCategories).subscribe((data:any)=>{
-      this.getAllProducts();
+    this.productService.editProduct(this.productSelected, this.productSelectedCategories).subscribe((data:any)=>{      
+      // this.getAllProducts();
+      this.productService.uploadFile(this.productSelected.id, ()=>{this.getAllProducts()});
     });
+    
   }
   onDeleteClick(){
     this.productService.deleteProduct(this.productSelected.id).subscribe((data:any)=>{
@@ -168,5 +177,4 @@ export class ProductsComponent implements OnInit {
   isChecked(categories, id){
     return categories.includes(id);
   }
-  
 }

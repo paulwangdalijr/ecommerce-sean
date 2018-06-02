@@ -82,13 +82,15 @@
 		        	<div class="row">
 			            <div class="col">
 			            	<div class="row">
-				        		<img alt='test' src="http://www.paperairplanebehavioral.com/wp-content/uploads/2015/07/Airplane.png"/>
+										<img alt="{{productSelected.id}}" [src]="this.authService.domain + '/img/' + productSelected.id + '.jpg?' + time" />
+										<!-- [src]="authService.domain + '/img/' + productSelected.id + '.jpg'" -->
+										<input *ngIf="operation!=='view'" class="form-control-file" type="file" name="fileUpload" ng2FileSelect [uploader]="productService.fileUploader">
 				        	</div>
-			            	<div class="row pr-3">
+			            	<div class="row pr-3 pt-2">
 					          	<div id="properties-list-group" class="list-group">
-								  <span class="list-group-item list-group-item-action active">
-								    Properties
-								  </span>
+											<span class="list-group-item list-group-item-action active">
+												Properties
+											</span>
 								  <div *ngIf="operation==='view'">
 									  <span *ngFor="let prop of productSelectedProperty" class="list-group-item list-group-item-action"><strong>{{prop}}: </strong>{{productSelected.property[prop]}}
 									  </span>

@@ -65,8 +65,6 @@ export class SignupComponent implements OnInit {
         this.processing = false;          
       });
     }
-    console.log(this.form.get('email').errors);
-    console.log(this.emailValid);
   }
 
   onRegisterSubmit(){
